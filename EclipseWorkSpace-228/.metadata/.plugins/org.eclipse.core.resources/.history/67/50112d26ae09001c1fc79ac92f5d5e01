@@ -1,0 +1,26 @@
+package edu.iastate.cs228.cla;
+
+import java.util.Scanner;
+
+public class HelloCLA {
+
+	public static void main(String[] args) {
+		if(args.length < 1) {
+			System.out.println("Incorrect #arguments!!! Please provide a list of names in arguments.");
+		}
+		else {
+			for(int i = 0; i < args.length; i++) {
+				System.out.println("Hello! " + args[i]);
+			}
+		}
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Please enter your weight (in kg): ");
+		double weight = scan.nextDouble();
+		System.out.print("Please enter your height (in cm): ");
+		double height = scan.nextDouble();
+		System.out.println("Your BMI is: " + 10000*weight/(height*height));
+		scan.close();
+		
+	}
+
+}
