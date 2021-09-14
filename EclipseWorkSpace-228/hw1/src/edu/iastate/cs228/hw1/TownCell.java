@@ -54,9 +54,43 @@ public abstract class TownCell {
 		//TODO: Write your code here.
 		//check the neighbors
 		//I have cell r,c
+		//check 1 cell away
+		
+		if(row-1 >= 0) {//check if row on top exists
+			if(col==0) {
+				for(int i=col; i<plain.getWidth();i++) {//if its in the first column then start there
+					nCensus[plain.grid[row-1][col].who().ordinal()]++;
+				}
+			} else {
+				for(int i = col-1; i<plain.getWidth();i++) {//or start diagonally up and left 1
+					nCensus[plain.grid[row-1][col].who().ordinal()]++;
+				}	
+			}	
+		}
+		//check the current row
+		if(col-1>=0) {//check neighbor to the left
+			nCensus[plain.grid[row][col-1].who().ordinal()]++;
+		}
+		if(col+1<plain.getWidth()) {//check neighbor to the right
+			nCensus[plain.grid[row][col+1].who().ordinal()]++;
+		}
+		//Check if row on below exists
+		if(row+1 < plain.getLength()) {//check if row on below exists
+			if(col==0) {
+				for(int i=col; i<plain.getWidth();i++) {//if its in the first column then start there
+					nCensus[plain.grid[row-1][col].who().ordinal()]++;
+				}
+			} else {
+				for(int i = col-1; i<plain.getWidth();i++) {//or start diagonally down and left 1
+					nCensus[plain.grid[row-1][col].who().ordinal()]++;
+				}	
+			}	
+		}
+		
+}
+		
 		
 
-	}
 
 	/**
 	 * Gets the identity of the cell.

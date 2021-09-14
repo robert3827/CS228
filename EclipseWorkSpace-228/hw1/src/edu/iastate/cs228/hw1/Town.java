@@ -39,8 +39,33 @@ public class Town {
 	 * @throws FileNotFoundException
 	 */
 	public Town(String inputFileName) throws FileNotFoundException {
-		//TODO: Write your code here.
-	}
+		
+		File file = new File(inputFileName);
+		Scanner scan = new Scanner(file);
+		
+		
+		
+//		while(scan.hasNext()) {
+			length = scan.nextInt();
+			width = scan.nextInt();
+//		}
+		//Start of the grid
+//		while(scan.hasNextLine()) {
+//			while(scan.hasNext()) {
+//				
+//				State state = whatState(scan.next());
+//				grid[][]
+//			}
+		for(int i=0;i<length;i++) {
+			Scanner scan2 = new Scanner(scan.nextLine());
+			for(int j=0;j<width;j++) {
+				grid[i][j] = setTownCell(whatState(scan2.next()));
+			}
+		}
+			
+		scan.close();	
+		}
+		
 	
 	/**
 	 * Returns width of the grid.
@@ -72,26 +97,7 @@ public class Town {
 		State chosen = State.EMPTY;//TODO make this an if statement that tells us what to do
 		
 		
-		for(int i=0;i<length;i++) {//number of rows
-			for(int j=0;j<width;j++) {//number of columns
-				switch (chosen) {
-				case EMPTY: grid[i][j] = new Empty(null, i, j) ;
-					break;
-				case CASUAL: grid[i][j] = (Casual)grid[i][j] ;
-					break;
-				case OUTAGE: grid[i][j] = (Outage)grid[i][j] ;
-					break;
-				case RESELLER: grid[i][j] = (Reseller)grid[i][j] ;
-					break;
-				case STREAMER: grid[i][j] = (Streamer)grid[i][j] ;
-					break;
-				default: 
-					break;
-				}
-					
-				
-			}
-		}
+		
 		
 	}
 	
@@ -104,7 +110,77 @@ public class Town {
 	@Override
 	public String toString() {
 		String s = "";
-		//TODO: Write your code here.
+		
+		for(int i=0;i<length;i++) {
+			for(int j=0;j<length;j++) {
+				s += whatLetter(grid[i][j].who());
+				s += " ";
+			}
+			s+="\n";
+		}
 		return s;
 	}
+	/**
+	 * Matches the state with the corresponding letter
+	 * @param state the state you want the initial for
+	 * @return a letter to add to the board string
+	 */
+	private String whatLetter(State state) {
+		String letter = null;
+		switch (state) {
+		case RESELLER: letter = "R";
+			break;
+		case CASUAL: letter = "C";
+			break;
+		case EMPTY: letter = "E";
+			break;
+		case OUTAGE: letter = "O";
+			break;
+		case STREAMER: letter = "S";
+			break;
+		default:
+			break;
+		}
+		return letter;
+	}
+	private State whatState(String s) {//get state from letter
+		State state = null;
+		switch (s) {
+		case "R": state = State.RESELLER;
+			break;
+		case "C": state = State.CASUAL;
+			break;
+		case "E": state = State.EMPTY;
+			break;
+		case "O": state = State.OUTAGE;
+			break;
+		case "S": state = State.STREAMER;
+			break;
+		default:
+			break;
+		}
+		return state;
+	}
+	private TownCell setTownCell(State state) {
+		TownCell cellNow = null;
+		switch (state) {
+		case RESELLER: cellNow = new Reseller(this, length, width);
+			break;
+		case CASUAL: cellNow = new Casual(this, length, width);
+			break;
+		case EMPTY: cellNow = new Empty(this, length, width);
+			break;
+		case OUTAGE: cellNow = new Outage(this, length, width);
+			break;
+		case STREAMER: cellNow = new Streamer(this, length, width);
+			break;
+		default:
+			break;
+		}
+		return cellNow;
+	}
+	
+	
+	
+	
 }

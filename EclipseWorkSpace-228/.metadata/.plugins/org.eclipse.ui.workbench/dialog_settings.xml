@@ -17,6 +17,7 @@
 		<item key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID" value="false"/>
 		<item key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID" value="false"/>
 		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="C:\Users\robbi\Downloads"/>
 			<item value="C:\Users\robbi\Downloads\edu.iastate.cs228.hw1\src\edu\iastate\cs228\hw1"/>
 		</list>
 	</section>
