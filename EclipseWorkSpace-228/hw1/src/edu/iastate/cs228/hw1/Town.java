@@ -45,22 +45,18 @@ public class Town {
 		
 		
 		
-//		while(scan.hasNext()) {
+
 			length = scan.nextInt();
 			width = scan.nextInt();
-//		}
-		//Start of the grid
-//		while(scan.hasNextLine()) {
-//			while(scan.hasNext()) {
-//				
-//				State state = whatState(scan.next());
-//				grid[][]
-//			}
+
 		for(int i=0;i<length;i++) {
-			Scanner scan2 = new Scanner(scan.nextLine());
 			for(int j=0;j<width;j++) {
-				grid[i][j] = setTownCell(whatState(scan2.next()));
+				String s = scan.next();
+				System.out.println(s);
+				grid[i][j] = setTownCell(whatState(s));
+				
 			}
+			
 		}
 			
 		scan.close();	
@@ -92,10 +88,14 @@ public class Town {
 	public void randomInit(int seed) {
 		Random rand = new Random(seed);
 		//TODO: Write your code here.
-		rand.nextInt(5);//Get a random number
+		//Get a random number
 		
-		State chosen = State.EMPTY;//TODO make this an if statement that tells us what to do
-		
+		State chosen = State.;//TODO make this an if statement that tells us what to do
+		for(int i=0;i<length;i++) {
+			for(int j=0;i<width;i++) {
+				grid[i][j] = setTownCell()
+			}
+		}
 		
 		
 		
@@ -163,14 +163,15 @@ public class Town {
 	}
 	private TownCell setTownCell(State state) {
 		TownCell cellNow = null;
+		Town town = new Town(length, width);
 		switch (state) {
-		case RESELLER: cellNow = new Reseller(this, length, width);
+		case RESELLER: cellNow = new Reseller(town, length, width);
 			break;
-		case CASUAL: cellNow = new Casual(this, length, width);
+		case CASUAL: cellNow = new Casual(town, length, width);
 			break;
-		case EMPTY: cellNow = new Empty(this, length, width);
+		case EMPTY: cellNow = new Empty(town, length, width);
 			break;
-		case OUTAGE: cellNow = new Outage(this, length, width);
+		case OUTAGE: cellNow = new Outage(town, length, width);
 			break;
 		case STREAMER: cellNow = new Streamer(this, length, width);
 			break;
@@ -179,6 +180,7 @@ public class Town {
 		}
 		return cellNow;
 	}
+	
 	
 	
 	
