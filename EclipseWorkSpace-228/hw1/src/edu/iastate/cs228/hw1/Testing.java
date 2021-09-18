@@ -10,7 +10,8 @@ public class Testing {
 	public static void main(String[] args) {
 		testLengthAndWidth();
 		testPrintArray();
-		testFileRead();
+		testRandInit();
+//		testFileRead();
 		
 		
 	}
@@ -39,8 +40,6 @@ public class Testing {
 	}
 	public static void testFileRead() {
 		
-		
-		
 		try {
 				
 			
@@ -63,11 +62,7 @@ public class Testing {
 		int size = 4;
 		Town town = new Town(size, size);
 		town.randomInit(2);
-		for(int i=0;i<size;i++) {
-			for(int j=0;j<size;j++) {
-				System.out.println(town.grid[i][j].who());
-			}
-		}
+		System.out.println(town.toString());
 		
 	}
 		

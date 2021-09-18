@@ -43,9 +43,6 @@ public class Town {
 		File file = new File(inputFileName);
 		Scanner scan = new Scanner(file);
 		
-		
-		
-
 			length = scan.nextInt();
 			width = scan.nextInt();
 
@@ -90,10 +87,12 @@ public class Town {
 		//TODO: Write your code here.
 		//Get a random number
 		
-		State chosen = State.;//TODO make this an if statement that tells us what to do
+		;//TODO make this an if statement that tells us what to do
 		for(int i=0;i<length;i++) {
-			for(int j=0;i<width;i++) {
-				grid[i][j] = setTownCell()
+			for(int j=0;j<width;j++) {
+				 
+			TownCell cell = numToCell(rand.nextInt(4), i, j);
+			grid[i][j] = cell;
 			}
 		}
 		
@@ -163,21 +162,40 @@ public class Town {
 	}
 	private TownCell setTownCell(State state) {
 		TownCell cellNow = null;
-		Town town = new Town(length, width);
 		switch (state) {
-		case RESELLER: cellNow = new Reseller(town, length, width);
+		case RESELLER: cellNow = new Reseller(this, length, width);
 			break;
-		case CASUAL: cellNow = new Casual(town, length, width);
+		case CASUAL: cellNow = new Casual(this, length, width);
 			break;
-		case EMPTY: cellNow = new Empty(town, length, width);
+		case EMPTY: cellNow = new Empty(this, length, width);
 			break;
-		case OUTAGE: cellNow = new Outage(town, length, width);
+		case OUTAGE: cellNow = new Outage(this, length, width);
 			break;
 		case STREAMER: cellNow = new Streamer(this, length, width);
 			break;
 		default:
 			break;
 		}
+		return cellNow;
+	}
+	private TownCell numToCell(int num, int l, int w) {
+		TownCell cellNow = null;
+		
+		switch(num) {
+		case 0: cellNow = new Reseller(this, l, w);
+		break;
+		case 1: cellNow = new Casual(this, l, w);
+		break;
+		case 2: cellNow = new Empty(this, l, w);
+		break;
+		case 3: cellNow = new Outage(this, l, w);
+		break;
+		case 4: cellNow = new Streamer(this, l, w);
+		break;
+		
+		}
+		
+		
 		return cellNow;
 	}
 	
