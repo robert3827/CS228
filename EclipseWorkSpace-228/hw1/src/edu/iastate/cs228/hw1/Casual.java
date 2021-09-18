@@ -13,17 +13,21 @@ public class Casual extends TownCell{
 		
 		return State.CASUAL;
 	}
-
+	
 	@Override
 	public TownCell next(Town tNew) {
 		// TODO read through logic to update the casual user. 
-		census(nCensus);
-		if(nCensus[2]>0) {
-			plain.grid[row][col] = new Outage(plain, row, col);
-		}
+		TownCell cell = null;
+		super.census(nCensus);
+		cell = new Outage(plain, row, col);
 		
 		
-		return null;
+//		if(nCensus[0]>0) {
+//			cell = new Outage(plain, row, col);
+//		}
+		
+		
+		return cell;
 	}
 
 }

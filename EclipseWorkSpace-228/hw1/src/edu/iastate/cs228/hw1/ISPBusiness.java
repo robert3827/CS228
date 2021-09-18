@@ -21,7 +21,9 @@ public class ISPBusiness {
 		//TODO: Write your code here.
 		for(int i=0;i<tOld.getLength();i++) {
 			for(int j=0; j< tOld.getWidth();j++) {
-				tOld.grid[i][j].next(tNew);
+				TownCell cell = tOld.grid[i][j].next(tNew);
+				tNew.grid[i][j] = cell;
+			
 			}
 		}
 		
@@ -31,7 +33,7 @@ public class ISPBusiness {
 	/**
 	 * Returns the profit for the current state in the town grid.
 	 * @param town
-	 * @return
+	 * @return $1 * the number of casual users
 	 */
 	public static int getProfit(Town town) {
 		int profit = 0;

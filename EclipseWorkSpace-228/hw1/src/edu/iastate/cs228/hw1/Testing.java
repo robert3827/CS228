@@ -32,10 +32,9 @@ public class Testing {
 		Town town = new Town(len, wid);
 		town.randomInit(2);
 		System.out.println(town.toString());
-		bus.updatePlain(town);
-		System.out.println(town);
-		
-		
+		Town newTown = new Town(len, wid);
+		newTown = bus.updatePlain(town);
+		System.out.println(newTown.toString());	
 		
 	}
 	
