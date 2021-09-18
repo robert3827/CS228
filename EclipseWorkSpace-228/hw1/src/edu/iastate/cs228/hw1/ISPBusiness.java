@@ -18,6 +18,7 @@ public class ISPBusiness {
 	 */
 	public static Town updatePlain(Town tOld) {
 		Town tNew = new Town(tOld.getLength(), tOld.getWidth());
+		
 		//TODO: Write your code here.
 		for(int i=0;i<tOld.getLength();i++) {
 			for(int j=0; j< tOld.getWidth();j++) {
