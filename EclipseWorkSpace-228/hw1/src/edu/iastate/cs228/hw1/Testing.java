@@ -8,20 +8,20 @@ import java.util.Scanner;
 public class Testing {
 	
 	public static void main(String[] args) {
-		testLengthAndWidth();
-		testPrintArray();
-		testRandInit();
-//		testFileRead();
+//		testLengthAndWidth();
+//		testPrintArray();
+//		testRandInit();
+		testFileRead();
 		
 		
 	}
-	public static void testLengthAndWidth() {
+	public static void testLengthAndWidth() { //correctly returns length and width
 		Town town = new Town(6, 9);
 		int width = town.getWidth();
 		int length = town.getLength();
 		System.out.println("Length:" + length +" Width:"+ width);
 	}
-	public static void testPrintArray() {
+	public static void testPrintArray() { //can print an array
 		Town town = new Town(2, 2);
 		TownCell cell = new Empty(town, 0, 0);
 		town.grid[0][0] = cell;
@@ -38,7 +38,7 @@ public class Testing {
 		String out = town.toString();
 		System.out.println(out);
 	}
-	public static void testFileRead() {
+	public static void testFileRead() {//throws file not found exception not sure why?
 		
 		try {
 				
@@ -58,10 +58,13 @@ public class Testing {
 	
 	
 	
-	public static void testRandInit() {
-		int size = 4;
-		Town town = new Town(size, size);
+	public static void testRandInit() { //can init randomly in any size
+		int length = 2;
+		int width = 8;
+		Town town = new Town(length, width);
 		town.randomInit(2);
+		System.out.println(town.toString());
+		town.randomInit(3);
 		System.out.println(town.toString());
 		
 	}

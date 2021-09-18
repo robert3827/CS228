@@ -111,7 +111,7 @@ public class Town {
 		String s = "";
 		
 		for(int i=0;i<length;i++) {
-			for(int j=0;j<length;j++) {
+			for(int j=0;j<width;j++) {
 				s += whatLetter(grid[i][j].who());
 				s += " ";
 			}
@@ -120,7 +120,7 @@ public class Town {
 		return s;
 	}
 	/**
-	 * Matches the state with the corresponding letter
+	 * Returns the first letter of the desired state
 	 * @param state the state you want the initial for
 	 * @return a letter to add to the board string
 	 */
@@ -142,6 +142,12 @@ public class Town {
 		}
 		return letter;
 	}
+	
+	/**
+	 * Given a letter string returns the corresponding State 
+	 * @param String letter of the first state 
+	 * @return State starting with the given string
+	 */
 	private State whatState(String s) {//get state from letter
 		State state = null;
 		switch (s) {
@@ -160,6 +166,12 @@ public class Town {
 		}
 		return state;
 	}
+	
+	/**
+	 * Creates a cell given a state
+	 * @param state that you want to become a TownCell object
+	 * @return TownCell representing the state given
+	 */
 	private TownCell setTownCell(State state) {
 		TownCell cellNow = null;
 		switch (state) {
@@ -178,24 +190,30 @@ public class Town {
 		}
 		return cellNow;
 	}
-	private TownCell numToCell(int num, int l, int w) {
+	
+	/**
+	 * Returns the state specified by the given a random number between 1 and 5
+	 * @param Rhe random number between 1 and the number of states
+	 * @param r - Row of the cell you want to change
+	 * @param c - Column of the cell you want to change
+	 * @return The cell you want to set.
+	 */
+	private TownCell numToCell(int randNum, int r, int c) {
 		TownCell cellNow = null;
 		
-		switch(num) {
-		case 0: cellNow = new Reseller(this, l, w);
+		switch(randNum) {
+		case 0: cellNow = new Reseller(this, r, c);
 		break;
-		case 1: cellNow = new Casual(this, l, w);
+		case 1: cellNow = new Casual(this, r, c);
 		break;
-		case 2: cellNow = new Empty(this, l, w);
+		case 2: cellNow = new Empty(this, r, c);
 		break;
-		case 3: cellNow = new Outage(this, l, w);
+		case 3: cellNow = new Outage(this, r, c);
 		break;
-		case 4: cellNow = new Streamer(this, l, w);
+		case 4: cellNow = new Streamer(this, r, c);
 		break;
 		
 		}
-		
-		
 		return cellNow;
 	}
 	
