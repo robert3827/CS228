@@ -1,9 +1,6 @@
 package edu.iastate.cs228.hw1;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Iterator;
-import java.util.Scanner;
+
 
 public class Testing {
 	
@@ -11,17 +8,44 @@ public class Testing {
 //		testLengthAndWidth();
 //		testPrintArray();
 //		testRandInit();
-		testFileRead();
+//		testFileRead();
+		
+		testUpdate();
+//		testProfit();
 		
 		
 	}
-	public static void testLengthAndWidth() { //correctly returns length and width
+	private static void testProfit() {
+		ISPBusiness bus = new ISPBusiness();
+		int len = 5;
+		int wid = 5;
+		Town town = new Town(len, wid);
+		town.randomInit(2);
+		int profit = bus.getProfit(town);
+		System.out.println("$" + profit);
+		
+	}
+	private static void testUpdate() {
+		ISPBusiness bus = new ISPBusiness();
+		int len = 5;
+		int wid = 5;
+		Town town = new Town(len, wid);
+		town.randomInit(2);
+		System.out.println(town.toString());
+		bus.updatePlain(town);
+		System.out.println(town);
+		
+		
+		
+	}
+	
+	private static void testLengthAndWidth() { //correctly returns length and width
 		Town town = new Town(6, 9);
 		int width = town.getWidth();
 		int length = town.getLength();
 		System.out.println("Length:" + length +" Width:"+ width);
 	}
-	public static void testPrintArray() { //can print an array
+	private static void testPrintArray() { //can print an array
 		Town town = new Town(2, 2);
 		TownCell cell = new Empty(town, 0, 0);
 		town.grid[0][0] = cell;
@@ -38,7 +62,7 @@ public class Testing {
 		String out = town.toString();
 		System.out.println(out);
 	}
-	public static void testFileRead() {//throws file not found exception not sure why?
+	private static void testFileRead() {//throws file not found exception not sure why?
 		
 		try {
 				
@@ -58,7 +82,7 @@ public class Testing {
 	
 	
 	
-	public static void testRandInit() { //can init randomly in any size
+	private static void testRandInit() { //can init randomly in any size
 		int length = 2;
 		int width = 8;
 		Town town = new Town(length, width);

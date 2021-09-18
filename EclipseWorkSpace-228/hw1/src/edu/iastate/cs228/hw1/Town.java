@@ -14,8 +14,7 @@ public class Town {
 	
 	private int length, width;  //Row and col (first and second indices)
 	public TownCell[][] grid;
-	
-	//DO I create a town variable. If so what does it do??
+
 	
 	/**
 	 * Constructor to be used when user wants to generate grid randomly, with the given seed.
@@ -38,7 +37,7 @@ public class Town {
 	 * @param inputFileName
 	 * @throws FileNotFoundException
 	 */
-	public Town(String inputFileName) throws FileNotFoundException {
+	public Town(String inputFileName) throws FileNotFoundException {//TODO make this work
 		
 		File file = new File(inputFileName);
 		Scanner scan = new Scanner(file);
