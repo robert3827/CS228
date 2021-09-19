@@ -39,24 +39,25 @@ public class Town {
 	 */
 	public Town(String inputFileName) throws FileNotFoundException {//TODO make this work
 		
+		
 		File file = new File(inputFileName);
 		Scanner scan = new Scanner(file);
 		
-			length = scan.nextInt();
-			width = scan.nextInt();
-
+		length = scan.nextInt();
+		width = scan.nextInt();
+		grid = new TownCell[length][width];
+		
 		for(int i=0;i<length;i++) {
 			for(int j=0;j<width;j++) {
 				String s = scan.next();
-				System.out.println(s);
-				grid[i][j] = setTownCell(whatState(s));
+				State state = whatState(s);
+					grid[i][j] = stateToCell(state, i, j);
 				
 			}
-			
 		}
-			
-		scan.close();	
-		}
+		
+		scan.close();
+	}
 		
 	
 	/**
@@ -171,18 +172,18 @@ public class Town {
 	 * @param state that you want to become a TownCell object
 	 * @return TownCell representing the state given
 	 */
-	private TownCell setTownCell(State state) {
+	private TownCell stateToCell(State state, int r, int c) {
 		TownCell cellNow = null;
 		switch (state) {
-		case RESELLER: cellNow = new Reseller(this, length, width);
+		case RESELLER: cellNow = new Reseller(this, r, c);
 			break;
-		case CASUAL: cellNow = new Casual(this, length, width);
+		case CASUAL: cellNow = new Casual(this, r, c);
 			break;
-		case EMPTY: cellNow = new Empty(this, length, width);
+		case EMPTY: cellNow = new Empty(this, r, c);
 			break;
-		case OUTAGE: cellNow = new Outage(this, length, width);
+		case OUTAGE: cellNow = new Outage(this, r, c);
 			break;
-		case STREAMER: cellNow = new Streamer(this, length, width);
+		case STREAMER: cellNow = new Streamer(this, r, c);
 			break;
 		default:
 			break;

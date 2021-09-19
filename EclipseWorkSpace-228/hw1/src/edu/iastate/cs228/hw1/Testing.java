@@ -8,9 +8,9 @@ public class Testing {
 //		testLengthAndWidth();
 //		testPrintArray();
 //		testRandInit();
-//		testFileRead();
+		testFileRead();
 		
-		testUpdate();
+//		testUpdate();
 //		testProfit();
 		
 		
