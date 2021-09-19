@@ -29,12 +29,28 @@ public class Testing {
 		ISPBusiness bus = new ISPBusiness();
 		int len = 5;
 		int wid = 5;
+		int numRounds = 0;
 		Town town = new Town(len, wid);
 		town.randomInit(2);
+		System.out.println("Origional ");
 		System.out.println(town.toString());
 		
 		town = bus.updatePlain(town);
+		System.out.println("Num Rounds: " + numRounds);
 		System.out.println(town.toString());	
+		numRounds++;
+		town = bus.updatePlain(town);
+		System.out.println("Num Rounds: " + numRounds);
+		System.out.println(town.toString());	
+		numRounds++;
+		town = bus.updatePlain(town);
+		System.out.println("Num Rounds: " + numRounds);
+		System.out.println(town.toString());	
+		numRounds++;
+		town = bus.updatePlain(town);
+		System.out.println("Num Rounds: " + numRounds);
+		System.out.println(town.toString());	
+		numRounds++;
 		
 	}
 	

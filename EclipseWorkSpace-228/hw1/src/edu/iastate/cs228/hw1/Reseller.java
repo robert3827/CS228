@@ -15,8 +15,15 @@ public class Reseller extends TownCell{
 
 	@Override
 	public TownCell next(Town tNew) {
-		// TODO Auto-generated method stub
-		return null;
+		TownCell cell = plain.grid[row][col];
+		super.census(nCensus);
+		
+		if(nCensus[2]<=3) { //this takes precedence
+			cell = new Empty(plain, row, col);
+		} else if(nCensus[1]>=3) {
+			cell = new Empty(plain, row, col);
+		}
+		return cell;
 	}
 
 }

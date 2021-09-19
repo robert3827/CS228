@@ -15,8 +15,9 @@ public class Outage extends TownCell {
 
 	@Override
 	public TownCell next(Town tNew) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TownCell cell = new Empty(plain, row, col);
+		return cell;
 	}
 
 }

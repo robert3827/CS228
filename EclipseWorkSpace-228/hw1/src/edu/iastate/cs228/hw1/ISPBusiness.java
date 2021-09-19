@@ -72,6 +72,48 @@ public class ISPBusiness {
 	 * 
 	 */
 	public static void main(String []args) {
-		//TODO: Write your code here.
+		Town town = null;
+		
+		System.out.println("How to populate grid (type 1 or 2) : 1: from a file. 2: randomly with seed ");
+		
+		Scanner scan = new Scanner(System.in);
+		int option = scan.nextInt();
+		//Option 1
+		if(option == 1) {
+			System.out.println("Please enter file path:");
+			String fileName = scan.next();
+			try {
+				town = new Town(fileName);
+			} catch (FileNotFoundException e) {
+				System.out.println("That File Doesn't Exist. Please Try Again.");
+				//e.printStackTrace();
+			}
+		}
+		//Option 2
+		if(option == 2) {
+			System.out.println("Provide rows, cols and seed integer separated by spaces:");
+			int len = scan.nextInt();
+			int wid = scan.nextInt();
+			int seed = scan.nextInt();
+			town = new Town(len, wid);
+			town.randomInit(seed);
+			System.out.println("Your town is: \n" + town.toString());
+		}
+		scan.close();
+		//Calc Profit
+		int moneyCollected = 0;
+		for(int month = 0; month<12; month++) {
+			moneyCollected += getProfit(town);
+			updatePlain(town);
+		}
+		double percentProfit = (double)moneyCollected/(town.getLength()*town.getWidth());
+		
+		System.out.printf("%.2f%%", percentProfit);
+	}
+
+	private static double profitPercent() {
+		double profitPercent = 0;
+		
+		return profitPercent;
 	}
 }

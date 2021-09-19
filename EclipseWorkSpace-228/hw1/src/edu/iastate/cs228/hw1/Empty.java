@@ -15,8 +15,12 @@ public class Empty extends TownCell{
 
 	@Override
 	public TownCell next(Town tNew) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		TownCell cell = new Casual(plain, row, col);
+		if(nCensus[1] + nCensus[3] <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
+			cell = new Reseller(plain, row, col);
+		}
+		return cell;
 	}
 
 }
