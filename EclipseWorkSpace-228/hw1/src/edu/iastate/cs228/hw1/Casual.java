@@ -19,16 +19,16 @@ public class Casual extends TownCell{
 		TownCell cell = plain.grid[row][col];
 		super.census(nCensus);
 		
-			if(nCensus[0]>0) { //this takes precedence
+			if(nCensus[RESELLER]>0) { //this takes precedence
 				cell = new Outage(plain, row, col);
-			} else if(nCensus[4]>0) {
+			} else if(nCensus[STREAMER]>0) {
 				cell = new Streamer(plain, row, col);
-			} else if(nCensus[2]>5) {
-				cell = new Streamer(plain, row, col);
-			}
-			if(nCensus[1] + nCensus[3] <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
+			} else if(nCensus[EMPTY] + nCensus[OUTAGE] <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
 				cell = new Reseller(plain, row, col);
+			} else if(nCensus[CASUAL]>5) {
+				cell = new Streamer(plain, row, col);
 			}
+			
 		
 		
 		

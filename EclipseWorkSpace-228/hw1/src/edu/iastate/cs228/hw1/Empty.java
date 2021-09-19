@@ -14,16 +14,17 @@ public class Empty extends TownCell{
 	}
 
 	@Override
-	public TownCell next(Town tNew) {
-		
-		TownCell cell = new Casual(plain, row, col);
-		if(nCensus[2]>5) {
-			cell = new Streamer(plain, row, col);
-		}
-		if(nCensus[1] + nCensus[3] <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
+	public TownCell next(Town tNew) {		
+		TownCell cell = plain.grid[row][col];
+		super.census(nCensus);
+	
+		if((nCensus[1] + nCensus[3]) <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
 			cell = new Reseller(plain, row, col);
-		} 
+		} else if(nCensus[CASUAL]>=5) {
+			cell = new Streamer(plain, row, col);
+		} else {//TODO is the correct order
+			cell = new Casual(plain, row, col);
+		}
 		return cell;
 	}
-
 }

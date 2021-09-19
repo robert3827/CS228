@@ -18,11 +18,11 @@ public class Reseller extends TownCell{
 		TownCell cell = plain.grid[row][col];
 		super.census(nCensus);
 		
-		if(nCensus[2]<=3) { //this takes precedence
+		if(nCensus[CASUAL]<=3) { //this takes precedence
 			cell = new Empty(plain, row, col);
-		} else if(nCensus[1]>=3) {
+		} else if(nCensus[EMPTY]>=3) {
 			cell = new Empty(plain, row, col);
-		} else if(nCensus[2]>5) {
+		} else if(nCensus[CASUAL]>5) {
 			cell = new Streamer(plain, row, col);
 		}
 		return cell;

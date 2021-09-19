@@ -1,6 +1,6 @@
 package edu.iastate.cs228.hw1;
 
-
+import java.io.FileNotFoundException;
 
 public class Testing {
 	
@@ -8,10 +8,29 @@ public class Testing {
 //		testLengthAndWidth();
 //		testPrintArray();
 //		testRandInit();
-		testFileRead();
+//		testFileRead();
 		
 //		testUpdate();
 //		testProfit();
+		test12Months();
+		
+		
+	}
+	private static void test12Months() {
+		Town town = null;
+		ISPBusiness bus = new ISPBusiness();
+		try {
+		town = new Town("ISP4x4.txt");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(int i=0;i<12;i++) {
+			System.out.println("After " + i + " updates");
+			System.out.println(town.toString());
+			town = bus.updatePlain(town);
+		}
 		
 		
 	}
@@ -78,6 +97,7 @@ public class Testing {
 		System.out.println(out);
 	}
 	private static void testFileRead() {//throws file not found exception not sure why?
+	
 		
 		try {
 				

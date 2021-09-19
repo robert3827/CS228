@@ -15,11 +15,12 @@ public class Outage extends TownCell {
 
 	@Override
 	public TownCell next(Town tNew) {
-		
+		super.census(nCensus);
+
 		TownCell cell = new Empty(plain, row, col);
-		if(nCensus[2]>5) {//TODO Does this still apply
-			cell = new Streamer(plain, row, col);
-		}
+//		if(nCensus[STREAMER]>5) {//TODO Does this still apply
+//			cell = new Streamer(plain, row, col);
+//		}
 		
 		
 		return cell;
