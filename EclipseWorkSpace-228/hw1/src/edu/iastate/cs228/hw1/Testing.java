@@ -31,7 +31,7 @@ public class Testing {
 		int wid = 5;
 		int numRounds = 0;
 		Town town = new Town(len, wid);
-		town.randomInit(2);
+		town.randomInit(3);
 		System.out.println("Origional ");
 		System.out.println(town.toString());
 		
