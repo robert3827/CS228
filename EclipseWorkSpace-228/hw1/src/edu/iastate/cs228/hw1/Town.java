@@ -90,7 +90,7 @@ public class Town {
 		for(int i=0;i<length;i++) {
 			for(int j=0;j<width;j++) {
 				 
-			TownCell cell = numToCell(rand.nextInt(4), i, j);
+			TownCell cell = numToCell(rand.nextInt(5), i, j);
 			grid[i][j] = cell;
 			}
 		}

@@ -17,6 +17,11 @@ public class Outage extends TownCell {
 	public TownCell next(Town tNew) {
 		
 		TownCell cell = new Empty(plain, row, col);
+		if(nCensus[2]>5) {//TODO Does this still apply
+			cell = new Streamer(plain, row, col);
+		}
+		
+		
 		return cell;
 	}
 

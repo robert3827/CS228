@@ -23,7 +23,10 @@ public class Casual extends TownCell{
 				cell = new Outage(plain, row, col);
 			} else if(nCensus[4]>0) {
 				cell = new Streamer(plain, row, col);
-			} if(nCensus[1] + nCensus[3] <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
+			} else if(nCensus[2]>5) {
+				cell = new Streamer(plain, row, col);
+			}
+			if(nCensus[1] + nCensus[3] <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
 				cell = new Reseller(plain, row, col);
 			}
 		
