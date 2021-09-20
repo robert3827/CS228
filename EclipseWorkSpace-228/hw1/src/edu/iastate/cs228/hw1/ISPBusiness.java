@@ -104,16 +104,18 @@ public class ISPBusiness {
 		int moneyCollected = 0;
 		for(int month = 0; month<12; month++) {
 			moneyCollected += getProfit(town);
-			updatePlain(town);
+			Town newT = updatePlain(town);
+			for(int x=0;x<town.getLength();x++) {
+				for(int y=0;y<town.getWidth();y++) {
+					town.grid[x][y] = newT.grid[x][y];
+				}
+			}
 		}
-		double percentProfit = (double)moneyCollected/(town.getLength()*town.getWidth());
-		
+		System.out.println("$" + moneyCollected + "/" + town.getLength()*town.getWidth()*12);
+		double percentProfit = (double)moneyCollected/(town.getLength()*town.getWidth()*12);
+		percentProfit*=100;
 		System.out.printf("%.2f%%", percentProfit);
 	}
 
-	private static double profitPercent() {
-		double profitPercent = 0;
-		
-		return profitPercent;
-	}
+	
 }

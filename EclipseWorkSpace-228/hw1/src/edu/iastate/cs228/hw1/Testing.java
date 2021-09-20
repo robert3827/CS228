@@ -28,12 +28,14 @@ public class Testing {
 		
 		for(int i=0;i<12;i++) {
 			System.out.println("After " + i + " updates");
-			System.out.println(town.toString());
+			System.out.print(town.toString());
+			System.out.println("$"+bus.getProfit(town));
 			Town newT = bus.updatePlain(town);
 			
 			for(int x=0;x<town.getLength();x++) {
 				for(int y=0;y<town.getWidth();y++) {
 					town.grid[x][y] = newT.grid[x][y];
+					
 				}
 			}
 			
