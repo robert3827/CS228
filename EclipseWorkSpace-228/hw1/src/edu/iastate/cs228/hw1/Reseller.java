@@ -22,7 +22,7 @@ public class Reseller extends TownCell{
 			cell = new Empty(plain, row, col);
 		} else if(nCensus[EMPTY]>=3) {
 			cell = new Empty(plain, row, col);
-		} else if(nCensus[CASUAL]>5) {
+		} else if(nCensus[CASUAL]>=5) {
 			cell = new Streamer(plain, row, col);
 		}
 		return cell;
