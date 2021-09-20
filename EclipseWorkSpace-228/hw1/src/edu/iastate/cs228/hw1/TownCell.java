@@ -27,6 +27,7 @@ public abstract class TownCell {
 
 	public TownCell(Town p, int r, int c) {
 		plain = p;
+		
 		row = r;
 		col = c;
 	}
@@ -55,7 +56,7 @@ public abstract class TownCell {
 		
 		//Check row above
 		if(row-1 >=0) {
-			if(col-1>=0) {
+			if(col-1 >=0) {
 				nCensus[stateToNum(plain.grid[row-1][col-1].who())]++;
 			}
 			nCensus[stateToNum(plain.grid[row-1][col].who())]++;
@@ -65,12 +66,11 @@ public abstract class TownCell {
 		}
 		
 		//check current row
-		if(col-1>=0) {
-			
+		if(col-1>=0) {//Check left neighbor
 			int who = stateToNum(plain.grid[row][col-1].who());
 			nCensus[who]++;
 		}
-		if(col+1<plain.getWidth()) {
+		if(col+1<plain.getWidth()) {//check right neighbor
 			int who = stateToNum(plain.grid[row][col+1].who());
 			nCensus[who]++;
 		}
@@ -94,9 +94,10 @@ public abstract class TownCell {
 		int num = -1;
 		switch(state) {
 		case RESELLER: num = 0;
-		case CASUAL: num = 1;
+		break;
+		case EMPTY: num = 1;
 			break;
-		case EMPTY: num = 2;
+		case CASUAL: num = 2;
 			break;
 		case OUTAGE: num = 3;
 			break;

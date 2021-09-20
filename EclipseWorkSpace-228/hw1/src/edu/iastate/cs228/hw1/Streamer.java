@@ -20,11 +20,11 @@ public class Streamer extends TownCell{
 			cell = new Outage(plain, row, col);
 		} else if(nCensus[OUTAGE]>0) {
 			cell = new Empty(plain, row, col);
-		} else if(nCensus[EMPTY] + nCensus[OUTAGE] <=1) {//does this take precedence over origional rules. If its supposed to then Ill put it first in list of ELIF
-			cell = new Reseller(plain, row, col);
-		} else if(nCensus[CASUAL]>5) {
+		}else if(nCensus[CASUAL]>5) {
 			cell = new Streamer(plain, row, col);
-		}
+		} if(nCensus[EMPTY] + nCensus[OUTAGE] <=1) {//TODO does this take precedence over original rules. If its supposed to then Ill put it first in list of ELIF
+				cell = new Reseller(plain, row, col);
+			} 
 		
 		return cell;
 	}
