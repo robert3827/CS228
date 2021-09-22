@@ -7,12 +7,12 @@ public class Testing {
 	public static void main(String[] args) {
 //		testLengthAndWidth();
 //		testPrintArray();
-//		testRandInit();
+		testRandInit();
 //		testFileRead();
 		
 //		testUpdate();
 //		testProfit();
-		test12Months();
+//		test12Months();
 		
 		
 	}
@@ -116,9 +116,6 @@ public class Testing {
 			System.out.println(town.toString());
 		} catch (Exception FileNotFoundException) {
 			System.out.println("That File Doesn't Exist");
-		}
-		finally {
-			
 		}
 		
 	}

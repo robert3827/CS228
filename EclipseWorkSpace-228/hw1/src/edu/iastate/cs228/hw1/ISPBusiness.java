@@ -97,7 +97,7 @@ public class ISPBusiness {
 			int seed = scan.nextInt();
 			town = new Town(len, wid);
 			town.randomInit(seed);
-			System.out.println("Your town is: \n" + town.toString());
+//			System.out.println("Your town is: \n" + town.toString());
 		}
 		scan.close();
 		//Calc Profit
@@ -111,7 +111,7 @@ public class ISPBusiness {
 				}
 			}
 		}
-		System.out.println("$" + moneyCollected + "/" + town.getLength()*town.getWidth()*12);
+//		System.out.println("$" + moneyCollected + "/" + town.getLength()*town.getWidth()*12);
 		double percentProfit = (double)moneyCollected/(town.getLength()*town.getWidth()*12);
 		percentProfit*=100;
 		System.out.printf("%.2f%%", percentProfit);
