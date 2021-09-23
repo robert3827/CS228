@@ -6,7 +6,6 @@ public class Testing {
 	
 	public static void main(String[] args) {
 //		testLengthAndWidth();
-//		testPrintArray();
 		testRandInit();
 //		testFileRead();
 		
@@ -114,8 +113,9 @@ public class Testing {
 			Town town = new Town("ISP4x4.txt");
 			
 			System.out.println(town.toString());
-		} catch (Exception FileNotFoundException) {
+		} catch (Exception e) {
 			System.out.println("That File Doesn't Exist");
+			e.printStackTrace();
 		}
 		
 	}

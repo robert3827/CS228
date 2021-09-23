@@ -7,8 +7,9 @@ import java.util.Scanner;
 
 
 /**
+ *  Holds the grid of TownCells that make up the town
  *  @author Robert Holeman
- *
+ *	
  */
 public class Town {
 	
@@ -19,15 +20,14 @@ public class Town {
 	/**
 	 * Constructor to be used when user wants to generate grid randomly, with the given seed.
 	 * This constructor does not populate each cell of the grid (but should assign a 2D array to it).
-	 * @param length
-	 * @param width
+	 * @param length - number of rows
+	 * @param width - number of columns
 	 */
 	public Town(int length, int width) {
 		
 		this.length = length;
 		this.width = width;
 		grid = new TownCell[length][width];
-		//TODO: Write your code here.
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class Town {
 	 * @param inputFileName
 	 * @throws FileNotFoundException
 	 */
-	public Town(String inputFileName) throws FileNotFoundException {//TODO make this work
+	public Town(String inputFileName) throws FileNotFoundException {
 		
 		
 		File file = new File(inputFileName);
@@ -62,7 +62,7 @@ public class Town {
 	
 	/**
 	 * Returns width of the grid.
-	 * @return
+	 * @return width
 	 */
 	public int getWidth() {
 		
@@ -71,7 +71,7 @@ public class Town {
 	
 	/**
 	 * Returns length of the grid.
-	 * @return
+	 * @return length
 	 */
 	public int getLength() {
 		
@@ -119,6 +119,7 @@ public class Town {
 		}
 		return s;
 	}
+	
 	/**
 	 * Returns the first letter of the desired state
 	 * @param state the state you want the initial for
@@ -144,11 +145,11 @@ public class Town {
 	}
 	
 	/**
-	 * Given a letter string returns the corresponding State 
+	 * Returns the corresponding State to the letter given
 	 * @param String letter of the first state 
 	 * @return State starting with the given string
 	 */
-	private State whatState(String s) {//get state from letter
+	private State whatState(String s) {
 		State state = null;
 		switch (s) {
 		case "R": state = State.RESELLER;
@@ -196,7 +197,7 @@ public class Town {
 	 * @param Rhe random number between 1 and the number of states
 	 * @param r - Row of the cell you want to change
 	 * @param c - Column of the cell you want to change
-	 * @return The cell you want to set.
+	 * @return A cell for you to set.
 	 */
 	private TownCell numToCell(int randNum, int r, int c) {
 		TownCell cellNow = null;

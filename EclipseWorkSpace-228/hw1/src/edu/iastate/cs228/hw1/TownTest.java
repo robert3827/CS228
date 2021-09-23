@@ -8,6 +8,25 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.function.Try;
 
 class TownTest {
+	
+	@Test
+	void testLW() {
+		Town town = new Town(2, 2);
+		assertEquals(2, town.getLength());
+		assertEquals(2, town.getWidth());
+	}
+	@Test
+	void testToString() {
+		Town town = new Town(2,2);
+		for(int i=0;i<town.getLength();i++) {
+			for (int j=0;j<town.getWidth();j++) {
+				town.grid[i][j] = new Casual(town, i, j);
+			}
+		}
+		String s =		"C C \n"
+					+ "C C \n";
+		assertEquals(s, town.toString());
+	}
 
 	@Test
 	void testConstructors() {
@@ -31,7 +50,10 @@ class TownTest {
 				System.out.println("That File Doesn't Exist");
 				e.printStackTrace();
 			}
-			town = new Town(2, 8);
+	}
+	@Test
+	void testRandomInit() {
+			Town town = new Town(2, 8);
 			town.randomInit(2);
 			String s =		"O E R E S R C S \n"
 						+ "E O S C S S S C \n";
@@ -41,6 +63,8 @@ class TownTest {
 					+ "S C R E E S C C \n";
 			assertEquals(s, town.toString());
 		}
+	
+	
 	
 	
 	

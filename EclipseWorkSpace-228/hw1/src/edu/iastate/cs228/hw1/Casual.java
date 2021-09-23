@@ -23,7 +23,7 @@ public class Casual extends TownCell{
 				cell = new Outage(plain, row, col);
 			} else if(nCensus[STREAMER]>0) {
 				cell = new Streamer(plain, row, col);
-			}  else if(nCensus[CASUAL]>=5) {
+			} else if(nCensus[CASUAL]>=5) {
 				cell = new Streamer(plain, row, col);
 			} if(nCensus[EMPTY] + nCensus[OUTAGE] <=1) {//TODO does this take precedence over original rules. If its supposed to then Ill put it first in list of ELIF
 				cell = new Reseller(plain, row, col);

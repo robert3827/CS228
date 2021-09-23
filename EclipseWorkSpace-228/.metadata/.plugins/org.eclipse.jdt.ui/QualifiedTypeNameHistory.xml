@@ -12,4 +12,6 @@
     <fullyQualifiedTypeName name="edu.iastate.cs228.hw1.TownCell"/>
     <fullyQualifiedTypeName name="edu.iastate.cs228.hw1.ISPBusiness"/>
     <fullyQualifiedTypeName name="java.lang.AssertionError"/>
+    <fullyQualifiedTypeName name="org.junit.platform.commons.function.Try"/>
+    <fullyQualifiedTypeName name="edu.iastate.cs228.hw1.Town"/>
 </qualifiedTypeNameHistroy>
