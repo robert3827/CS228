@@ -1,7 +1,11 @@
 package edu.iastate.cs228.hw1;
 
 import java.io.FileNotFoundException;
-
+/**
+ * non junit tests
+ * @author Robert Holeman
+ *
+ */
 public class Testing {
 	
 	public static void main(String[] args) {
