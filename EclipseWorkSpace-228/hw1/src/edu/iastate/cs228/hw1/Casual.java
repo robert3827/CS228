@@ -1,5 +1,9 @@
 package edu.iastate.cs228.hw1;
-
+/**
+ * 
+ * @author Robert Holeman
+ *
+ */
 public class Casual extends TownCell{
 	
 	

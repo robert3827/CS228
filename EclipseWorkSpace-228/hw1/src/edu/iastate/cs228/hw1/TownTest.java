@@ -6,7 +6,11 @@ import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.function.Try;
-
+/**
+ * 
+ * @author Robert Holeman
+ *
+ */
 class TownTest {
 	
 	@Test

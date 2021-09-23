@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.FileNotFoundException;
 
 import org.junit.jupiter.api.Test;
-
+/**
+ * 
+ * @author Robert Holeman
+ *
+ */
 class TownCellTest {
 
 	@Test
