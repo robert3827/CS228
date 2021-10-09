@@ -9,6 +9,7 @@ public class P9 {
 	}
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter a number in 2's complement to be negatized:");
 		String input = scan.next();
 		P9 p9 = new P9();
 		

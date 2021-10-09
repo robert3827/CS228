@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class P8 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter an 8-bit number in two's complement to be converted to decimal:");
 		String input = scan.next();
 		
 		if(input.charAt(0) == '0') {

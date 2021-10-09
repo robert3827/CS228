@@ -10,8 +10,9 @@ public class P6 {
 
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter a decimal value to be converted to hexadecimal:");
 		int input = scan.nextInt();
-		System.out.println(correctAns(input));
+//		System.out.println(correctAns(input));
 		P6 p6 = new P6();
 		
 		P5 p5 = new P5();

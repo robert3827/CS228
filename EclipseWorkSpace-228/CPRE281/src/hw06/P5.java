@@ -9,10 +9,11 @@ public class P5 {
 	}
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter a decimal number to be converted to binary:");
 		int input = scan.nextInt();
 		P5 p5 = new P5();
 		
-		System.out.println(builtIn(input));
+//		System.out.println(builtIn(input));
 		System.out.println(p5.decToBinary(input));
 		
 		scan.close();
