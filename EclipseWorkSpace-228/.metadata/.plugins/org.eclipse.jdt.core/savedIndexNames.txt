@@ -1,17 +1,3 @@
 INDEX VERSION 1.131+C:\Git\CS228\EclipseWorkSpace-228\.metadata\.plugins\org.eclipse.jdt.core
-533683676.index
-1661859796.index
-2837350687.index
 3219381872.index
-1943378581.index
-3383628149.index
-1717210545.index
-3372823947.index
-3623557781.index
-3996008694.index
-4249061335.index
-270397495.index
-380565780.index
-2397245054.index
-883872932.index
-355479170.index
+2440161128.index
