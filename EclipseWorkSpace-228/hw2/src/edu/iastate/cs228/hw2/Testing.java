@@ -13,8 +13,9 @@ public class Testing {
 //		testSetXORY();
 //		pointString();
 //		testCompareTo();
-		testPointScanner();
+//		testPointScanner();
 //		howDoesTimeWork();
+		testInsertionSort();
 	}
 	private static void pointString() {
 		Point p = new Point(3,4);
@@ -60,17 +61,7 @@ public class Testing {
 
 	}
 	
-	public static void testSelectionSorter() {
-		
-		Point[] pts = new Point[17];
-		PointScanner ps = new PointScanner(pts, Algorithm.SelectionSort);
-		
-		
-		
-		
-		
-		SelectionSorter sorter = new SelectionSorter(pts);
-	}
+	
 
 	public static void testPointScanner() {
 		try {
@@ -99,6 +90,22 @@ public class Testing {
 		long endTime = System.nanoTime();
 		System.out.println(endTime - startTime);
 	}
-
+	
+	public static void testInsertionSort() {
+		try {
+			PointScanner ps = new PointScanner("points.txt", Algorithm.InsertionSort);
+			ps.scan();
+			System.out.println(ps.stats());
+			System.out.println(ps.toString());//SHould be (0,1)
+			ps.writeMCPToFile();
+			
+		} catch (InputMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
