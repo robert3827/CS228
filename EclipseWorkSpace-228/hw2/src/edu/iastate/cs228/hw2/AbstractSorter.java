@@ -31,6 +31,7 @@ public abstract class AbstractSorter
 	
 	// Add other protected or private instance variables you may need. 
 	
+	
 
 	protected AbstractSorter()
 	{
@@ -47,9 +48,18 @@ public abstract class AbstractSorter
 	 */
 	protected AbstractSorter(Point[] pts) throws IllegalArgumentException
 	{
-		// TODO 
+		if(pts == null ||pts.length ==0) {
+			throw new IllegalArgumentException();
+		} else {//else not technically necessary
+			points = new Point[pts.length];
+			int i=0;
+			for(Point p:pts) {
+				points[i] = p;
+				i++;
+			}
+			
+		}
 	}
-
 		
 	
 	
@@ -70,7 +80,18 @@ public abstract class AbstractSorter
 	 */
 	public void setComparator(int order) throws IllegalArgumentException
 	{
+		boolean compByY = false;
+		boolean compByX = true;
 		// TODO 
+		if(order<0 || order>1) {
+			throw new IllegalArgumentException();
+		} else {
+			if(order ==0) {
+				Point.setXorY(compByX);
+			} else {//order is 1
+				Point.setXorY(compByY);
+			}
+		}
 	}
 
 	
@@ -101,7 +122,11 @@ public abstract class AbstractSorter
 	 */
 	public void getPoints(Point[] pts)
 	{
-		// TODO 
+		int i=0;
+		for(Point p: points) {
+			pts[i] = p;
+			i++;
+		}
 	}
 	
 
@@ -113,6 +138,8 @@ public abstract class AbstractSorter
 	 */
 	protected void swap(int i, int j)
 	{
-		// TODO 
+		Point temp = points[j];
+		points[j] = points[i];
+		points[i] = temp;
 	}	
 }

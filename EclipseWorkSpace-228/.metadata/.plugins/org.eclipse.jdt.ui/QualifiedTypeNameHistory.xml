@@ -3,8 +3,6 @@
     <fullyQualifiedTypeName name="zybooksCode.Merge"/>
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="edu.iastate.cs228.hw1.Empty"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
     <fullyQualifiedTypeName name="edu.iastate.cs228.hw1.State"/>
     <fullyQualifiedTypeName name="edu.iastate.cs228.hw1.TownCell"/>
     <fullyQualifiedTypeName name="java.lang.AssertionError"/>
@@ -17,9 +15,20 @@
     <fullyQualifiedTypeName name="edu.iastate.cs228.hw1.ISPBusiness"/>
     <fullyQualifiedTypeName name="com.sun.tools.javac.code.Attribute.Array"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="hw06.P6"/>
     <fullyQualifiedTypeName name="hw06.P5"/>
     <fullyQualifiedTypeName name="hw06.P9"/>
+    <fullyQualifiedTypeName name="com.sun.tools.javac.util.List"/>
+    <fullyQualifiedTypeName name="java.awt.List"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.net.URL"/>
+    <fullyQualifiedTypeName name="java.io.InputStream"/>
+    <fullyQualifiedTypeName name="edu.iastate.cs228.hw2.Point"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalAccessError"/>
+    <fullyQualifiedTypeName name="java.lang.IllegalArgumentException"/>
+    <fullyQualifiedTypeName name="edu.iastate.cs228.hw2.SelectionSorter"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.io.FileNotFoundException"/>
 </qualifiedTypeNameHistroy>

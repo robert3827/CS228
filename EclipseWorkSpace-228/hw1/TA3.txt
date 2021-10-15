@@ -1,0 +1,4 @@
+3 3
+O O O
+S C E 
+C C C 

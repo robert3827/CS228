@@ -10,12 +10,13 @@ public class Testing {
 	
 	public static void main(String[] args) {
 //		testLengthAndWidth();
-		testRandInit();
+//		testRandInit();
 //		testFileRead();
 		
 //		testUpdate();
 //		testProfit();
 //		test12Months();
+		testTAMethods();
 		
 		
 	}
@@ -53,9 +54,9 @@ public class Testing {
 		Town town = new Town(len, wid);
 		town.randomInit(2);
 		int profit = bus.getProfit(town);
-		System.out.println("$" + profit);
-		
+		System.out.println("$" + profit);	
 	}
+	
 	private static void testUpdate() {
 		ISPBusiness bus = new ISPBusiness();
 		int len = 5;
@@ -123,10 +124,7 @@ public class Testing {
 		}
 		
 	}
-	
-	
-	
-	
+
 	private static void testRandInit() { //can init randomly in any size
 		int length = 2;
 		int width = 8;
@@ -137,9 +135,18 @@ public class Testing {
 		System.out.println(town.toString());
 		
 	}
-		
-		
-		
+	
+	private static void testTAMethods() {
+		try {
+				
+			Town town = new Town("ISP3x3.txt");
+			
+			System.out.println(town.toString());
+		} catch (Exception e) {
+			System.out.println("That File Doesn't Exist");
+			e.printStackTrace();
+		}
+	}
 }
 
 

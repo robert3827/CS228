@@ -1,8 +1,8 @@
  package edu.iastate.cs228.hw2;
 
 /**
- *  
- * @author
+ *  Represents a point object. Also handles comparing two points.
+ * @author Robert Holeman
  *
  */
 
@@ -13,6 +13,7 @@ public class Point implements Comparable<Point>
 	
 	public static boolean xORy;  // compare x coordinates if xORy == true and y coordinates otherwise 
 	                             // To set its value, use Point.xORy = true or false. 
+	
 	
 	public Point()  // default constructor
 	{
@@ -46,7 +47,7 @@ public class Point implements Comparable<Point>
 	 */
 	public static void setXorY(boolean xORy)
 	{
-		// TODO 
+		Point.xORy = xORy;
 	}
 	
 	
@@ -72,8 +73,15 @@ public class Point implements Comparable<Point>
 	 */
 	public int compareTo(Point q)
 	{
-		return 0; 
-		// TODO; 
+		if( (xORy == true && (this.x < q.x || (this.x == q.x&&this.y<q.y)))
+				|| (xORy==false && (this.y <q.y || this.y==q.y&&this.x<q.x)) ) {
+			return -1;
+		} else if(this.x == q.x && this.y == q.y) {
+			return 0;
+		} else {
+			return 1; 
+		}
+		 
 	}
 	
 	
@@ -83,7 +91,6 @@ public class Point implements Comparable<Point>
 	@Override
     public String toString() 
 	{
-		// TODO 
-		return null; 
+		return "(" + this.x +", "+ this.y + ")"; 
 	}
 }

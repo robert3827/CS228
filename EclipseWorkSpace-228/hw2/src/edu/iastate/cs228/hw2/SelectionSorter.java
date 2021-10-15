@@ -30,7 +30,9 @@ public class SelectionSorter extends AbstractSorter
 	 */
 	public SelectionSorter(Point[] pts)  
 	{
-		// TODO 
+		super(pts);
+		
+		
 	}	
 
 	
@@ -41,6 +43,27 @@ public class SelectionSorter extends AbstractSorter
 	@Override 
 	public void sort()
 	{
-		// TODO 
+		
+		Point smallestAfter = points[0];//will hold the value of the new smallest point you've seen so far
+		int smallestIndex = 0;//will hold the location/index of the smallest smallest
+		
+		for(int i=0;i<points.length;i++) {
+			smallestAfter = points[i];
+			smallestIndex = i;
+			for(int j=i+1;j<points.length;j++) {
+				if(points[j].compareTo(smallestAfter)<0) {//strictly less than to keep stability
+					smallestAfter = points[j];
+					smallestIndex = j;
+				}
+			}
+			//now you've found the smallest
+			points[smallestIndex] = points[i];
+			points[i] = smallestAfter;
+			
+		}
+		for(int i=0;i<points.length;i++) {
+			System.out.println(points[i].toString());
+		}
+		System.out.println("----END of Sort----");
 	}	
 }
