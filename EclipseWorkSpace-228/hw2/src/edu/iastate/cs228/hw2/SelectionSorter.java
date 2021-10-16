@@ -61,9 +61,9 @@ public class SelectionSorter extends AbstractSorter
 			points[i] = smallestAfter;
 			
 		}
-		for(int i=0;i<points.length;i++) {
-			System.out.println(points[i].toString());
-		}
-		System.out.println("----END of Sort----");
+//		for(int i=0;i<points.length;i++) {
+//			System.out.println(points[i].toString());
+//		}
+//		System.out.println("----END of Sort----");
 	}	
 }

@@ -42,6 +42,7 @@ public class PointScanner {
 	 * @throws IllegalArgumentException if pts == null or pts.length == 0.
 	 */
 	public PointScanner(Point[] pts, Algorithm algo) throws IllegalArgumentException {
+		points = new Point[pts.length];
 		sortingAlgorithm = algo;
 		int i = 0;
 		for (Point p : pts) {
@@ -87,9 +88,9 @@ public class PointScanner {
 				p = new Point(x, y);
 				points[i] = p;
 				// TODO remove this before final Product
-				System.out.println(p.toString());
+//				System.out.println(p.toString());
 			}
-			System.out.println("----END of Initial Print----");
+//			System.out.println("----END of Initial Print----");
 			scan.close();
 		}
 
@@ -175,8 +176,8 @@ public class PointScanner {
 	public String stats() {
 		String s = "";
 		s+= "" + who(sortingAlgorithm);
-		s+= " " + points.length;
-		s+=" "+ scanTime;
+		s+= "		" + points.length;
+		s+= "		"+ scanTime;
 		return s;
 		// TODO
 	}

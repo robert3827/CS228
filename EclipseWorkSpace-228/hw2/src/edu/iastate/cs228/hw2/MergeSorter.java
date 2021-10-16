@@ -44,10 +44,10 @@ public class MergeSorter extends AbstractSorter
 		//Print Stuff
 			
 			
-			for(int i=0;i<points.length;i++) {
-				System.out.println(points[i].toString());
-			}
-			System.out.println("----END of Sort----");
+//			for(int i=0;i<points.length;i++) {
+//				System.out.println(points[i].toString());
+//			}
+//			System.out.println("----END of Sort----");
 	}
 
 	
