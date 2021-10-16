@@ -41,6 +41,13 @@ public class MergeSorter extends AbstractSorter
 	public void sort()
 	{
 		mergeSortRec(points);
+		//Print Stuff
+			
+			
+			for(int i=0;i<points.length;i++) {
+				System.out.println(points[i].toString());
+			}
+			System.out.println("----END of Sort----");
 	}
 
 	
@@ -51,36 +58,19 @@ public class MergeSorter extends AbstractSorter
 	 * 
 	 * @param pts	point array 
 	 */
-	private void mergeSortRec(Point[] pts)
-	{
-		Point[] result = sort(pts);
-		
-		
-		for(int i=0;i<points.length;i++) {
-			points[i] = result[i];
-			i++;
+	private void mergeSortRec(Point[] pts) {
+		if(pts.length==1) {
+			return;
+		} else {
+			int mid = pts.length/2;			
+			merge(pts, 0, mid, pts.length);
+			int i=pts.length+1;
 		}
-		
-		for(int i=0;i<points.length;i++) {
-			System.out.println(points[i].toString());
-		}
-		System.out.println("----END of Sort----");
 		
 	}
 	
 	// Other private methods if needed ...
-	private Point[] sort(Point[] pts) {//This is not currently working well
-		if(pts.length==1) {
-			return pts;
-		}//else 
-		int mid = pts.length/2;
-		Point[] lhs = new Point[mid];
-		Point[] rhs = new Point[pts.length - mid];
-		putInto2Arrays(pts, lhs, rhs);
-		
-		Point[] combined = merge(sort(lhs), sort(rhs));
-		return combined;
-	}
+	
 	/**
 	 * 
 	 * @param total - array to be split
@@ -100,34 +90,38 @@ public class MergeSorter extends AbstractSorter
 		}
 		
 	}
-	private Point[] merge(Point[] lhs, Point[] rhs) {//Believe this works well
-		Point[] merged = new Point[lhs.length+rhs.length];
-		int i=0;
-		int j=0;
-		int t=0;
-		while(i<lhs.length&& j<rhs.length) {
-			if(lhs[i].compareTo(rhs[j])<=0) {//to keep stability
-				merged[t] = lhs[i];
-				i++;
-				t++;
+	
+	private void merge(Point[] pts, int i, int j, int k) {//Believe this works well
+		
+		int size = k-1+1;
+		int mergedCursor = 0;
+		int leftCursor = 0;
+		int rightCursor = 0;
+		Point[] merged = new Point[size];
+		
+		while(leftCursor<j&& rightCursor<k) {
+			if(pts[leftCursor].compareTo(pts[rightCursor]) < 0) {//strictly less than to keep stability
+				merged[mergedCursor] = pts[leftCursor];
+				mergedCursor++;
+				leftCursor++;
 			} else {
-				merged[t] = rhs[j];
-				j++;
-				t++;
+				merged[mergedCursor] = pts[rightCursor];
+				mergedCursor++;
+				rightCursor++;
 			}
 		}
-		if(i==lhs.length) {//lhs is already exhausted
-			while(j<rhs.length) {
-				merged[t] = rhs[j];
-				j++;
-			}
-		} else {//rhs is already exhausted
-			while(i<lhs.length) {
-				merged[t] = lhs[i];
-				i++;
-			}
+		while(leftCursor<j) {
+			merged[mergedCursor] = pts[leftCursor];
+			leftCursor++;
 		}
-		return merged;
+		while(rightCursor<k) {
+			merged[mergedCursor] = pts[rightCursor];
+			rightCursor++;
+		}
+			
+		for(int z = 0; z<merged.length;z++) {
+			pts[z] = merged[z];
+		}
 	}
 	
 }
