@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 
 /**
  *  
- * @author
+ * @author Robert Holeman
  *
  */
 
@@ -53,8 +53,13 @@ public class MergeSorter extends AbstractSorter
 	 */
 	private void mergeSortRec(Point[] pts)
 	{
+		Point[] result = sort(pts);
 		
-		pts = Partition(pts, 0, pts.length);
+		
+		for(int i=0;i<points.length;i++) {
+			points[i] = result[i];
+			i++;
+		}
 		
 		for(int i=0;i<points.length;i++) {
 			System.out.println(points[i].toString());
@@ -64,25 +69,38 @@ public class MergeSorter extends AbstractSorter
 	}
 	
 	// Other private methods if needed ...
-	private Point[] Partition(Point[] pts, int start, int end) {
+	private Point[] sort(Point[] pts) {//This is not currently working well
+		if(pts.length==1) {
+			return pts;
+		}//else 
+		int mid = pts.length/2;
+		Point[] lhs = new Point[mid];
+		Point[] rhs = new Point[pts.length - mid];
+		putInto2Arrays(pts, lhs, rhs);
 		
-		int mid = (start+end)/2;
-		int lhsLen = mid - start;
-		int rhsLen = end - mid;
-		Point[] lhs = new Point[mid - start];
-		Point[] rhs = new Point[rhsLen];
-		if(pts.length>=1) {
-			lhs[0] = pts[start];
-			return lhs;
+		Point[] combined = merge(sort(lhs), sort(rhs));
+		return combined;
+	}
+	/**
+	 * 
+	 * @param total - array to be split
+	 * @param lhs - will hold the first half 
+	 * @param rhs - will hold the second half
+	 */
+	private void putInto2Arrays(Point[] total, Point[] lhs, Point[] rhs) {
+		int mid = total.length/2;
+		int i;
+		for(i=0;i<mid;i++) {
+			lhs[i] = total[i];
 		}
-			lhs = Partition(pts, start, mid);
-			rhs = Partition(pts, mid+1, end);
-			return Merge(lhs, rhs);
-	
-		
+		int j = 0;
+		while(j+i < total.length) {
+			rhs[j] = total[j+i];
+			j++;
+		}
 		
 	}
-	private Point[] Merge(Point[] lhs, Point[] rhs) {
+	private Point[] merge(Point[] lhs, Point[] rhs) {//Believe this works well
 		Point[] merged = new Point[lhs.length+rhs.length];
 		int i=0;
 		int j=0;
