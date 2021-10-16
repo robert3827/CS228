@@ -62,8 +62,13 @@ public class MergeSorter extends AbstractSorter
 		if(pts.length==1) {
 			return;
 		} else {
-			int mid = pts.length/2;			
-			merge(pts, 0, mid, pts.length);
+			int mid = pts.length/2;
+			Point[] lhs = new Point[mid];
+			Point[] rhs = new Point[pts.length - mid];
+			putInto2Arrays(pts, lhs, rhs);
+			mergeSortRec(lhs);
+			mergeSortRec(rhs);
+			pts = merge(lhs,rhs);
 			int i=pts.length+1;
 		}
 		
@@ -91,37 +96,34 @@ public class MergeSorter extends AbstractSorter
 		
 	}
 	
-	private void merge(Point[] pts, int i, int j, int k) {//Believe this works well
-		
-		int size = k-1+1;
-		int mergedCursor = 0;
-		int leftCursor = 0;
-		int rightCursor = 0;
-		Point[] merged = new Point[size];
-		
-		while(leftCursor<j&& rightCursor<k) {
-			if(pts[leftCursor].compareTo(pts[rightCursor]) < 0) {//strictly less than to keep stability
-				merged[mergedCursor] = pts[leftCursor];
-				mergedCursor++;
-				leftCursor++;
+	private Point[] merge(Point[] lhs, Point[] rhs) {//Believe this works well
+		Point[] merged = new Point[lhs.length+rhs.length];
+		int i=0;
+		int j=0;
+		int t=0;
+		while(i<lhs.length&& j<rhs.length) {
+			if(lhs[i].compareTo(rhs[j])<=0) {//to keep stability
+				merged[t] = lhs[i];
+				i++;
+				t++;
 			} else {
-				merged[mergedCursor] = pts[rightCursor];
-				mergedCursor++;
-				rightCursor++;
+				merged[t] = rhs[j];
+				j++;
+				t++;
 			}
 		}
-		while(leftCursor<j) {
-			merged[mergedCursor] = pts[leftCursor];
-			leftCursor++;
+		if(i==lhs.length) {//lhs is already exhausted
+			while(j<rhs.length) {
+				merged[t] = rhs[j];
+				j++;
+			}
+		} else {//rhs is already exhausted
+			while(i<lhs.length) {
+				merged[t] = lhs[i];
+				i++;
+			}
 		}
-		while(rightCursor<k) {
-			merged[mergedCursor] = pts[rightCursor];
-			rightCursor++;
-		}
-			
-		for(int z = 0; z<merged.length;z++) {
-			pts[z] = merged[z];
-		}
+		return merged;
 	}
 	
 }
