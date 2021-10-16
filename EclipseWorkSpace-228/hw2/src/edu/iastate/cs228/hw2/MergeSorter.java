@@ -69,7 +69,6 @@ public class MergeSorter extends AbstractSorter
 			mergeSortRec(lhs);
 			mergeSortRec(rhs);
 			merge(pts, lhs, rhs);
-			int i=pts.length+1;
 		}
 		
 	}
