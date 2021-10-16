@@ -7,8 +7,8 @@ import java.util.InputMismatchException;
 
 
 /**
- *  
- * @author
+ *  Sorts the given array of points with the Quicksort method.
+ * @author Robert Holeman
  *
  */
 

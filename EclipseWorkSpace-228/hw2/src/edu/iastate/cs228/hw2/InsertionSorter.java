@@ -7,7 +7,7 @@ import java.util.InputMismatchException;
 
 
 /**
- *  
+ *  Sorts the given points array with Insertion Sort.
  * @author
  *
  */

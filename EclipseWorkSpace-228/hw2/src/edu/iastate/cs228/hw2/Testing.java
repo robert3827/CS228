@@ -69,7 +69,7 @@ public class Testing {
 			PointScanner ps = new PointScanner("points.txt", Algorithm.SelectionSort);
 			ps.scan();
 			System.out.println(ps.stats());
-			System.out.println(ps.toString());//SHould be (0,1)
+			System.out.println(ps.toString());//Should be (0,1)
 			ps.writeMCPToFile();
 			
 		} catch (InputMismatchException e) {

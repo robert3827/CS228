@@ -7,8 +7,8 @@ import java.util.InputMismatchException;
 
 
 /**
- *  
- * @author
+ *  Sorts the given point array with the Selection Sort Algorithm
+ * @author Robert Holeman
  *
  */
 
@@ -56,7 +56,7 @@ public class SelectionSorter extends AbstractSorter
 					smallestIndex = j;
 				}
 			}
-			//now you've found the smallest
+			//now you've found the smallest, swap the smallest element into the 1st availible slot
 			points[smallestIndex] = points[i];
 			points[i] = smallestAfter;
 			

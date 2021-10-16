@@ -19,7 +19,13 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.util.Random; 
 
-
+/**
+ * Holds the main methods for interacting with the sorting algorithms. This class will allow the user
+ * to choose to randomly generate points or read them from a file. The points will then be sorted by
+ * each algorithm and the times will be recorded for the user to compare them.
+ * @author Robert Holeman
+ *
+ */
 public class CompareSorters 
 {
 	/**

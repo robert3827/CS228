@@ -1,8 +1,8 @@
 package edu.iastate.cs228.hw2;
 
 /**
- *  
- * @author
+ *  Abstract super class for all the sorting algorithms. This class stores one array to be sorted.
+ * @author Robert Holeman
  *
  */
 
@@ -28,6 +28,16 @@ public abstract class AbstractSorter
 		 
 	protected Comparator<Point> pointComparator = null;  
 	
+	class PointComparator implements Comparator<Point> {
+
+		@Override
+		public int compare(Point o1, Point o2) {
+			//Should be the same as
+			//return o1-o2 with Respect to X or Y;
+			return o1.compareTo(o2);
+		}
+		
+	}
 	
 	// Add other protected or private instance variables you may need. 
 	
@@ -78,8 +88,9 @@ public abstract class AbstractSorter
 	 * @throws IllegalArgumentException if order is less than 0 or greater than 1
 	 *        
 	 */
-	public void setComparator(int order) throws IllegalArgumentException
+	public void setComparator(int order) throws IllegalArgumentException//TODO what do I need to do with this?????????
 	{
+		
 		boolean compByY = false;
 		boolean compByX = true;
 		// TODO 
