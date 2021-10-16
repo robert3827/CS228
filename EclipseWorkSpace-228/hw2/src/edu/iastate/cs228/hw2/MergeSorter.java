@@ -68,7 +68,7 @@ public class MergeSorter extends AbstractSorter
 			putInto2Arrays(pts, lhs, rhs);
 			mergeSortRec(lhs);
 			mergeSortRec(rhs);
-			pts = merge(lhs,rhs);
+			merge(pts, lhs, rhs);
 			int i=pts.length+1;
 		}
 		
@@ -96,7 +96,7 @@ public class MergeSorter extends AbstractSorter
 		
 	}
 	
-	private Point[] merge(Point[] lhs, Point[] rhs) {//Believe this works well
+	private void merge(Point[] total, Point[] lhs, Point[] rhs) {//Believe this works well
 		Point[] merged = new Point[lhs.length+rhs.length];
 		int i=0;
 		int j=0;
@@ -116,14 +116,18 @@ public class MergeSorter extends AbstractSorter
 			while(j<rhs.length) {
 				merged[t] = rhs[j];
 				j++;
+				t++;
 			}
 		} else {//rhs is already exhausted
 			while(i<lhs.length) {
 				merged[t] = lhs[i];
 				i++;
+				t++;
 			}
 		}
-		return merged;
+		for(int z=0;z<merged.length;z++) {
+			total[z] = merged[z];
+		}
 	}
 	
 }
