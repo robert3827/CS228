@@ -16,8 +16,10 @@ public class Testing {
 //		testPointScanner();
 //		howDoesTimeWork();
 //		testInsertionSort();
-		testMergeSort();
+//		testMergeSort();
+		testQuickSort();
 	}
+
 	private static void pointString() {
 		Point p = new Point(3,4);
 		System.out.println(p.toString());
@@ -124,5 +126,22 @@ public class Testing {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	private static void testQuickSort() {
+		try {
+			PointScanner ps = new PointScanner("points.txt", Algorithm.QuickSort);
+			ps.scan();
+			System.out.println(ps.stats());
+			System.out.println(ps.toString());//SHould be (0,1)
+			ps.writeMCPToFile();
+			
+		} catch (InputMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

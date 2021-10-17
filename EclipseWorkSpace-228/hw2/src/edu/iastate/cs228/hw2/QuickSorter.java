@@ -43,6 +43,11 @@ public class QuickSorter extends AbstractSorter
 	public void sort()
 	{
 		quickSortRec(0, points.length-1); 
+		
+		for(int i=0;i<points.length;i++) {
+		System.out.println(points[i].toString());
+	}
+	System.out.println("----END of Sort----");
 	}
 	
 	
@@ -55,36 +60,8 @@ public class QuickSorter extends AbstractSorter
 	private void quickSortRec(int first, int last)
 	{
 		// TODO
-		if(first>=last) {//can't do that
-			return;
-		} else {
-			int p = myPartition(points, first, last);
-			myQuickSortRec(points, first, p-1);
-			myQuickSortRec(points, p+1, last);
-		}
+		myQuickSortRec(points, first, last);
 	}
-	private void myQuickSortRec(Point[] pts, int first, int last) {//TODO
-		Point pivot = pts[last];
-		Point temp;
-		int i = first-1;
-		for(int j=first;j<last;j++) {
-			if(pts[j].compareTo(pivot)<0) {
-				i++;
-				temp = pts[i];
-				pts[i] = pts[j];
-				pts[j] = temp;
-			}
-			temp = pts[i+1];
-			pts[i+1] = pts[last];
-			pts[last] = pts[last];
-		}
-	}
-	private int myPartition(Point[] pts, int first, int last) {
-		
-		
-		return 0;//TODO
-	}
-	
 	
 	/**
 	 * Operates on the subarray of points[] with indices between first and last.
@@ -95,9 +72,38 @@ public class QuickSorter extends AbstractSorter
 	 */
 	private int partition(int first, int last)
 	{
-		// TODO 
+			
 		return 0; 
-	}	
+	}
+	
+	private void myQuickSortRec(Point[] pts, int first, int last) {
+		if(first>=last) {//because you have 1 element
+			return;
+		}//else 
+		int middle = myPartition(pts, first, last);//the pivot from previous partition
+		myQuickSortRec(pts, first, middle);
+		myQuickSortRec(pts, middle+1, last);
+	}
+	private int myPartition(Point[] pts, int first, int last) {
+		//puts the pivot(which was at the end) into the middle
+		//meaning anything smaller to the left anything bigger to the right
+		Point pivot = pts[last];
+		Point temp;
+		int i=first-1;//this will be the counter at the end of the pivot
+		for(int j=0;j<pts.length;j++) {//while something is less than
+			//the pivot swap it to the front of the array
+			if(pts[j].compareTo(pivot)<0) {
+				i++;
+				temp = pts[i];
+				pts[i] = pts[j];
+				pts[j] = temp; 
+			}
+		}
+		temp = pts[i+1];
+		pts[i+1] = pts[last];
+		pts[last] = temp;
+		return i;
+	}
 		
 
 

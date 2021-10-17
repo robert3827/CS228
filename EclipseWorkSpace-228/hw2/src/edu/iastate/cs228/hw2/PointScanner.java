@@ -141,8 +141,6 @@ public class PointScanner {
 			break;
 			//default is QS(quickSort) because sure
 		default: aSorter = new QuickSorter(points);
-			aSorter.setComparator(0);
-			aSorter.sort();
 			break;
 			
 		} 
