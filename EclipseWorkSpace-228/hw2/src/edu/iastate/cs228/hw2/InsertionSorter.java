@@ -6,16 +6,12 @@ import java.lang.IllegalArgumentException;
 import java.util.InputMismatchException;
 
 
-/**
- *  Sorts the given points array with Insertion Sort.
- * @author
- *
- */
+
 
 /**
  * 
  * This class implements insertion sort.   
- *
+ * @author Robert Holeman
  */
 
 public class InsertionSorter extends AbstractSorter 

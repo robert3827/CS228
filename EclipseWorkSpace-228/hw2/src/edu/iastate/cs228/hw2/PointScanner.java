@@ -22,6 +22,7 @@ import java.util.Scanner;
  * 
  * It records the employed sorting algorithm as well as the sorting time for
  * comparison.
+ * @author Robert Holeman
  *
  */
 public class PointScanner {
@@ -31,7 +32,9 @@ public class PointScanner {
 											// the x coordinates and y coordinates of those points in the array
 											// points[].
 	private Algorithm sortingAlgorithm;
-
+	/**
+	 * Holds the value of System.nanotime() which records the amount of time needed to execute the given algorithm.
+	 */
 	protected long scanTime; // execution time in nanoseconds.
 
 	/**
@@ -60,7 +63,6 @@ public class PointScanner {
 	 *                                integers
 	 */
 	protected PointScanner(String inputFileName, Algorithm algo) throws FileNotFoundException, InputMismatchException {
-		// TODO
 		sortingAlgorithm = algo;
 		File file = new File(inputFileName);
 		Scanner scan = new Scanner(file);
@@ -87,7 +89,6 @@ public class PointScanner {
 				y = scan.nextInt();
 				p = new Point(x, y);
 				points[i] = p;
-				// TODO remove this before final Product
 //				System.out.println(p.toString());
 			}
 //			System.out.println("----END of Initial Print----");
@@ -105,13 +106,11 @@ public class PointScanner {
 	 *  
 	 * Based on the value of sortingAlgorithm, create an object of SelectionSorter, InsertionSorter, MergeSorter,
 	 * or QuickSorter to carry out sorting.       
-	 * @param algo
-	 * @return
+	 * 
 	 */
 	public void scan()
 	{
 		
-		// TODO  
 		AbstractSorter aSorter; 
 		int x;
 		int y;
@@ -128,6 +127,7 @@ public class PointScanner {
 		//     d) set the medianCoordinatePoint reference to the object with the correct coordinates.
 		//
 		//     e) sum up the times spent on the two sorting rounds and set the instance variable scanTime. 
+		
 		switch(sortingAlgorithm) {
 		case SelectionSort: 
 			aSorter = new SelectionSorter(points);
@@ -190,7 +190,6 @@ public class PointScanner {
 		String s = "MCP: ";
 		s+= medianCoordinatePoint.toString();
 		return s;
-		// TODO
 	}
 
 	/**
@@ -210,7 +209,6 @@ public class PointScanner {
 				myWriter.write(this.toString());
 			    myWriter.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 	     

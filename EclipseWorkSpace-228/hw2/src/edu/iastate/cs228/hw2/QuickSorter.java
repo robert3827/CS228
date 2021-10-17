@@ -6,16 +6,12 @@ import java.lang.IllegalArgumentException;
 import java.util.InputMismatchException;
 
 
-/**
- *  Sorts the given array of points with the Quicksort method.
- * @author Robert Holeman
- *
- */
+
 
 /**
  * 
  * This class implements the version of the quicksort algorithm presented in the lecture.   
- *
+ * @author Robert Holeman
  */
 
 public class QuickSorter extends AbstractSorter
@@ -36,7 +32,7 @@ public class QuickSorter extends AbstractSorter
 		
 
 	/**
-	 * Carry out quicksort on the array points[] of the AbstractSorter class.  
+	 * Public facing sort method. Carries out QuickSort on the array points[] of the AbstractSorter class.  
 	 * 
 	 */
 	@Override 
@@ -44,10 +40,10 @@ public class QuickSorter extends AbstractSorter
 	{
 		quickSortRec(0, points.length-1); 
 		
-		for(int i=0;i<points.length;i++) {
-		System.out.println(points[i].toString());
-	}
-	System.out.println("----END of Sort----");
+//		for(int i=0;i<points.length;i++) {
+//		System.out.println(points[i].toString());
+//	}
+//	System.out.println("----END of Sort----");
 	}
 	
 	
@@ -70,12 +66,17 @@ public class QuickSorter extends AbstractSorter
 	 * @param last
 	 * @return
 	 */
-	private int partition(int first, int last)
-	{
-			
-		return 0; 
-	}
-	
+//	private int partition(int first, int last)
+//	{
+//			
+//		return 0; 
+//	}
+	/**
+	 * 
+	 * @param pts - sub-array through which to sort
+	 * @param first - where to start looking when sorting through the array
+	 * @param last - where to stop looking when sorting through the array
+	 */
 	private void myQuickSortRec(Point[] pts, int first, int last) {
 		if(first>=last) {//because you have 1 element
 			return;
@@ -84,6 +85,13 @@ public class QuickSorter extends AbstractSorter
 		myQuickSortRec(pts, first, p-1);
 		myQuickSortRec(pts, p+1, last);
 	}
+	/**
+	 * 
+	 * @param pts - sub-array through which to sort
+	 * @param first - where the partition begins
+	 * @param last - where the partition ends
+	 * @return - index of the partition. Everything smaller than partition is to the left. Everything larger is to the right
+	 */
 	private int myPartition(Point[] pts, int first, int last) {
 		//puts the pivot(which was at the end) into the middle
 		//meaning anything smaller to the left anything bigger to the right

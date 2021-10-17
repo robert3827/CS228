@@ -15,7 +15,7 @@ import java.util.InputMismatchException;
  * 
  * This abstract class is extended by SelectionSort, InsertionSort, MergeSort, and QuickSort.
  * It stores the input (later the sorted) sequence. 
- *
+ *	@author Robert Holeman
  */
 public abstract class AbstractSorter
 {
@@ -32,8 +32,9 @@ public abstract class AbstractSorter
 
 		@Override
 		public int compare(Point o1, Point o2) {
+			//TODO - is this supposed to be used anywhere?????
 			//Should be the same as
-			//return o1-o2 with Respect to X or Y;
+			//return o1-o2 with Respect to X or Y; or just the Value of compare to. 
 			return o1.compareTo(o2);
 		}
 		
@@ -43,11 +44,11 @@ public abstract class AbstractSorter
 	
 	
 
-	protected AbstractSorter()
-	{
-		// No implementation needed. Provides a default super constructor to subclasses. 
-		// Removable after implementing SelectionSorter, InsertionSorter, MergeSorter, and QuickSorter.
-	}
+//	protected AbstractSorter()
+//	{
+//		// No implementation needed. Provides a default super constructor to subclasses. 
+//		// Removable after implementing SelectionSorter, InsertionSorter, MergeSorter, and QuickSorter.
+//	}
 	
 	
 	/**

@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 
 /**
  * Testing methods for all the other classes
- * @author Robert
+ * @author Robert Holeman
  *
  */
 public class Testing {
@@ -75,10 +75,8 @@ public class Testing {
 			ps.writeMCPToFile();
 			
 		} catch (InputMismatchException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -103,10 +101,8 @@ public class Testing {
 			ps.writeMCPToFile();
 			
 		} catch (InputMismatchException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -120,10 +116,8 @@ public class Testing {
 			ps.writeMCPToFile();
 			
 		} catch (InputMismatchException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -136,10 +130,8 @@ public class Testing {
 			ps.writeMCPToFile();
 			
 		} catch (InputMismatchException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

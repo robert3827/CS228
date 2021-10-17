@@ -6,16 +6,11 @@ import java.lang.IllegalArgumentException;
 import java.util.InputMismatchException;
 
 
-/**
- *  Sorts the given point array with the Selection Sort Algorithm
- * @author Robert Holeman
- *
- */
 
 /**
  * 
  * This class implements selection sort.   
- *
+ * @author Robert Holeman
  */
 
 public class SelectionSorter extends AbstractSorter

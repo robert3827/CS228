@@ -131,13 +131,13 @@ public class CompareSorters
 		scanners[0] = new PointScanner(pts, Algorithm.SelectionSort);
 		scanners[1] = new PointScanner(pts, Algorithm.InsertionSort);
 		scanners[2] = new PointScanner(pts, Algorithm.MergeSort);
-		scanners[3] = new PointScanner(pts, Algorithm.SelectionSort);
+		scanners[3] = new PointScanner(pts, Algorithm.QuickSort);
 	}
 	private static void initScannersFile(PointScanner[] scanners, String file) throws InputMismatchException, FileNotFoundException {
 		scanners[0] = new PointScanner(file, Algorithm.SelectionSort);
 		scanners[1] = new PointScanner(file, Algorithm.InsertionSort);
 		scanners[2] = new PointScanner(file, Algorithm.MergeSort);
-		scanners[3] = new PointScanner(file, Algorithm.SelectionSort);
+		scanners[3] = new PointScanner(file, Algorithm.QuickSort);
 	}
 	private static void scanThem(PointScanner[] scanners) {
 		System.out.println("");//Empty Line

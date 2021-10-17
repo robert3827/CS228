@@ -3,7 +3,6 @@ INDEX VERSION 1.131+C:\Git\CS228\EclipseWorkSpace-228\.metadata\.plugins\org.ecl
 1661859796.index
 2837350687.index
 1943378581.index
-1324501807.index
 3383628149.index
 1717210545.index
 3372823947.index

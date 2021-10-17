@@ -13,8 +13,8 @@ import java.util.InputMismatchException;
 
 /**
  * 
- * This class implements the mergesort algorithm.   
- *
+ * This class implements the Merge Sort algorithm.   
+ *	@author Robert Holeman
  */
 
 public class MergeSorter extends AbstractSorter
@@ -34,7 +34,7 @@ public class MergeSorter extends AbstractSorter
 
 
 	/**
-	 * Perform mergesort on the array points[] of the parent class AbstractSorter. 
+	 * Perform mergesort on the array points[] of the parent class AbstractSorter. This is the public facing method.
 	 * 
 	 */
 	@Override 
@@ -56,7 +56,7 @@ public class MergeSorter extends AbstractSorter
 	 * way is to make copies of the two halves of pts[], recursively call mergeSort on them, 
 	 * and merge the two sorted subarrays into pts[].   
 	 * 
-	 * @param pts	point array 
+	 * @param pts	point array to be sorted
 	 */
 	private void mergeSortRec(Point[] pts) {
 		if(pts.length==1) {
@@ -77,9 +77,9 @@ public class MergeSorter extends AbstractSorter
 	
 	/**
 	 * 
-	 * @param total - array to be split
-	 * @param lhs - will hold the first half 
-	 * @param rhs - will hold the second half
+	 * @param total - array to be split.
+	 * @param lhs - will hold the first half of the array
+	 * @param rhs - will hold the second half of the array
 	 */
 	private void putInto2Arrays(Point[] total, Point[] lhs, Point[] rhs) {
 		int mid = total.length/2;
@@ -94,7 +94,12 @@ public class MergeSorter extends AbstractSorter
 		}
 		
 	}
-	
+	/**
+	 * Merges the two given half arrays into one array of appropriate size. 
+	 * @param total - will hold the sorted array after lhs and rhs are merged 
+	 * @param lhs - the left half of the array
+	 * @param rhs - the right half of the array
+	 */
 	private void merge(Point[] total, Point[] lhs, Point[] rhs) {//Believe this works well
 		Point[] merged = new Point[lhs.length+rhs.length];
 		int i=0;
