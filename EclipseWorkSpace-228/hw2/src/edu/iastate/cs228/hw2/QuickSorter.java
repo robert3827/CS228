@@ -80,9 +80,9 @@ public class QuickSorter extends AbstractSorter
 		if(first>=last) {//because you have 1 element
 			return;
 		}//else 
-		int middle = myPartition(pts, first, last);//the pivot from previous partition
-		myQuickSortRec(pts, first, middle);
-		myQuickSortRec(pts, middle+1, last);
+		int p = myPartition(pts, first, last);//the pivot from previous partition
+		myQuickSortRec(pts, first, p-1);
+		myQuickSortRec(pts, p+1, last);
 	}
 	private int myPartition(Point[] pts, int first, int last) {
 		//puts the pivot(which was at the end) into the middle
@@ -90,7 +90,7 @@ public class QuickSorter extends AbstractSorter
 		Point pivot = pts[last];
 		Point temp;
 		int i=first-1;//this will be the counter at the end of the pivot
-		for(int j=0;j<pts.length;j++) {//while something is less than
+		for(int j=first;j<last;j++) {//while something is less than
 			//the pivot swap it to the front of the array
 			if(pts[j].compareTo(pivot)<0) {
 				i++;
@@ -102,7 +102,7 @@ public class QuickSorter extends AbstractSorter
 		temp = pts[i+1];
 		pts[i+1] = pts[last];
 		pts[last] = temp;
-		return i;
+		return i+1;
 	}
 		
 
