@@ -2,9 +2,16 @@ package hw3.iastate.edu.hw3;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
+
 /**
  * Takes a file from input. Reads the file in infix notation and converts it to postfix notation. 
  * Outputs either the postfix notation if the infix expression is valid, otherwise the first error encountered.
@@ -18,15 +25,11 @@ public class InfixToPostFix {
 	 */
 	public static void main(String[] args) {
 		InfixToPostFix ipf = new InfixToPostFix();
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Input File Name");
-		String fileName = scan.next();
-		ArrayList<String> exprs = ipf.inputFile(fileName);
 		
-			ipf.convertInfixToPostfix(exprs);		
+		ArrayList<String> exprs = ipf.inputFile("input.txt");
 		
-		scan.close();
-	}
+		ipf.outputFile(exprs, "output.txt");
+		}
 
 	/**
 	 * Reads from a file. Each line is taken as one expression and added to the list of expressions, which are stored as strings.
@@ -53,6 +56,24 @@ public class InfixToPostFix {
 		
 		return exprList;
 	}
+	
+	private void outputFile(ArrayList<String> list, String fileName) {
+		
+				try {
+					Files.writeString(Path.of(fileName),"");
+					for(String s: list) {
+						Files.writeString(Path.of(fileName), s + "\n", StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+					}
+				
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+			// TODO Auto-generated catch block
+		}
+		
+	
 	/**
 	 * 
 	 * @param ifList list of infix expressions to be converted to postfix
@@ -79,7 +100,7 @@ public class InfixToPostFix {
 	 * @return the correct postfix expression from the given infix expression
 	 * @throws Exception Throws exception to stop program execution. Could also just return a string there but TBD on what is better.
 	 */
-	private String convert(String infix) throws Exception {
+	private String convert(String infix) {
 		int curRank = 0;
 		Scanner scan = new Scanner(infix);
 		String postFix = "";
@@ -91,9 +112,9 @@ public class InfixToPostFix {
 				
 				curRank += rank(s);//as soon as I see the char I want to make sure the rank is ok.
 				if(curRank > 1 ) {
-					throw new Exception("Too Many Operands" + " (" + s + ")");
+					return ("Too Many Operands" + " (" + s + ")");
 				} else if(curRank<-1) {
-					throw new Exception("Too Many Operators" + " (" + s + ")");
+					return ("Too Many Operators" + " (" + s + ")");
 				}
 				//TODO Here is the real logic.
 				if(rank(s)==1) {//not operator or parentheses
@@ -101,8 +122,14 @@ public class InfixToPostFix {
 				} else {//c is an operator
 					int stackOpPrec = precedenceInStack(stack.peek());
 					int curOpPrec = precedenceAsInput(s);
-					if(stackOpPrec>=curOpPrec) {
-						postFix+=stack.pop();
+					while(stackOpPrec>=curOpPrec) {
+						
+						String topOfStack = stack.pop();
+						if(s.equals("(") && topOfStack.equals(")")) {
+							//do nothing
+						} else {
+							postFix+= topOfStack;
+						}
 					}
 					
 					
