@@ -118,7 +118,7 @@ public class InfixToPostFix {
 										//see if it has an open paren immediately before
 				if(!stack.isEmpty() && stack.peek().equals("(")) {
 					scan.close();
-					String returnStr = ("Error: no subexpression detected");
+					String returnStr = ("Error: no subexpression detected ()");
 					return returnStr;
 				}
 				//you can just add all the stuff in as well
