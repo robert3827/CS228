@@ -106,6 +106,11 @@ public class InfixToPostFix {
 		return pfList;
 	}
 	
+	/**
+	 * Checks the given string for empty parenthesis one after another.
+	 * @param infix the expression in infix notation that you wish to check for empty parenthesis
+	 * @return the given string if there were no empty parenthesis or an error if there were
+	 */
 	private String checkForEmptyParenthesis(String infix) {
 		Scanner scan = new Scanner(infix);
 		Stack<String> stack = new Stack<>();
