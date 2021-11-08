@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Stack;
 
+
 /**
  * Takes a file from input. Reads the file in infix notation and converts it to
  * postfix notation. Outputs either the postfix notation if the infix expression
@@ -93,10 +94,41 @@ public class InfixToPostFix {
 	private ArrayList<String> convertInfixToPostfix(ArrayList<String> ifList) {
 		ArrayList<String> pfList = new ArrayList<>();
 		for (String s : ifList) {
-			pfList.add(convert(s));
+			String answer = checkForEmptyParenthesis(s);
+			if(s.equals(answer)) {//if we just returned the same string then 
+									//there were no issues and we can convert it
+				answer = convert(s);
+			}
+			
+			pfList.add(answer);
 		}
 
 		return pfList;
+	}
+	
+	private String checkForEmptyParenthesis(String infix) {
+		Scanner scan = new Scanner(infix);
+		Stack<String> stack = new Stack<>();
+		
+		while(scan.hasNext()) {
+			String s = scan.next();
+			if(s.equals("(")) {//if its a paren push it to stack
+				stack.push(s);
+			} else if (s.equals(")")) {//if its a close paren, 
+										//see if it has an open paren immediately before
+				if(!stack.isEmpty() && stack.peek().equals("(")) {
+					scan.close();
+					String returnStr = ("Error: no subexpression detected");
+					return returnStr;
+				}
+				//you can just add all the stuff in as well
+			} else if(!s.equals("(") && !s.equals(")")) {
+				stack.push(s);
+			}
+			
+		}
+		scan.close();
+		return infix;
 	}
 
 	/**
@@ -115,7 +147,8 @@ public class InfixToPostFix {
 		while (scan.hasNext()) {// for each term
 
 			String s = scan.next();
-
+			//Quick handling of empty parenthesis
+			
 			curRank += rank(s);// as soon as I see the char I want to make sure the rank is ok.
 			if (curRank > 1) {
 				scan.close();
@@ -126,14 +159,14 @@ public class InfixToPostFix {
 			}
 
 			// TODO Here is the real logic.
-			if (rank(s) == 1) {// Means it is a number.
+			if (rank(s) == 1) {// Means s is a number.
 				postFix += s;
 				postFix += " ";
 			} else {// s is an operator
 
 				if (stack.isEmpty()) {// don't compare just push it
 					if (s.equals(")")) {
-						// You shouldn't have it want to put close paren into empty stack.
+						// You shouldn't have it want to put close parenthesis into empty stack.
 						scan.close();
 						return ("Error: no opening parenthesis detected");
 					} else {
@@ -141,22 +174,25 @@ public class InfixToPostFix {
 					}
 				} else if (!stack.isEmpty()) {
 					int precOfS = precedenceAsInput(s);
-					if (precOfS > precedenceInStack(stack.peek())) {
+					if (precOfS > precedenceInStack(stack.peek())) {//precedence of the new
+												//char is higher so pile on top
 						if (s.equals(")")) {
 							scan.close();
 							return ("Error: no opening parenthesis detected");
 						}
 						stack.push(s);
-					} else {
-						while (!stack.isEmpty()) {
-							if (stack.peek().equals("(")) {// close parentheses won't ever be pushed
-								stack.pop(); // Postfix shouldn't have parentheses
+					} else {// precedence Of s is lower so start popping
+						
+						
+						while (!stack.isEmpty()) {	
+							if (stack.peek().equals("(")) {// discard parenthesis
+								stack.pop();
 								break;
-							}
-
-							else if (precedenceInStack(stack.peek()) >= precOfS) {// pop anything with higher precedence
+							} else if (precedenceInStack(stack.peek()) >= precOfS) {
+								// pop anything with higher precedence and add to output
 								postFix += stack.pop();
 								postFix += " ";
+
 
 							}
 							if (s.equals(")") && stack.isEmpty()) {
@@ -172,10 +208,17 @@ public class InfixToPostFix {
 
 				}
 			}
+
 		}
 		scan.close();// everything is scanned in.
 		// All that is left to do is to pop everything out.
 		//
+		ArrayList<String> ans = checkFinalRank(infix);
+		if (!ans.get(0).equals("1")) {
+			scan.close();
+			return ("Error: too many operators (" + ans.get(1) + ")");
+		}
+
 		while (!stack.isEmpty()) {
 			if (stack.peek().equals("(")) {
 				scan.close();
@@ -187,6 +230,31 @@ public class InfixToPostFix {
 		}
 		postFix = postFix.trim();
 		return postFix;
+	}
+
+	/**
+	 * Checks the rank at the end to see if the given expression is a valid one.
+	 * 
+	 * @param infix the postfix expression to check
+	 * @return 0 if the given postfix expression has the correct rank
+	 */
+	public ArrayList<String> checkFinalRank(String infix) {
+		ArrayList<String> cFR = new ArrayList<>();
+		int rank = 0;
+		Scanner scan = new Scanner(infix);
+		while (scan.hasNext()) {
+
+			String s = scan.next();
+			rank += rank(s);
+		}
+		scan.close();
+		// At the end if rank is one you want to return the offending character(thats
+		// actually a string)
+		cFR.add(Integer.toString(rank));
+		if (!(rank == 1)) {
+			cFR.add(Character.toString(infix.charAt(infix.length() - 1)));
+		}
+		return cFR;
 	}
 
 	/**
