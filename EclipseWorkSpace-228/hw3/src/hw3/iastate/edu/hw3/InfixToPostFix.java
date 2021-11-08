@@ -19,7 +19,7 @@ import java.util.Stack;
  *
  */
 public class InfixToPostFix {
-	
+
 	/**
 	 * Handles getting the input and running the code.
 	 * 
@@ -37,13 +37,13 @@ public class InfixToPostFix {
 	 * Reads from a file. Each line is taken as one expression and added to the list
 	 * of expressions, which are stored as strings.
 	 * 
-	 * @param s the name of the file to read from
+	 * @param fileName the name of the file to read from
 	 * @return A list of strings representing individual expressions in infix
 	 *         notation
 	 */
-	private ArrayList<String> inputFile(String s) {
+	private ArrayList<String> inputFile(String fileName) {
 		ArrayList<String> exprList = new ArrayList<>();
-		File file = new File(s);
+		File file = new File(fileName);
 		try {
 			Scanner scan = new Scanner(file);
 			while (scan.hasNext()) {
@@ -60,12 +60,13 @@ public class InfixToPostFix {
 
 		return exprList;
 	}
-	
+
 	/**
-	 * Prints the given array list to a given file. 
-	 * Any contents previously in the file will be removed.
-	 * @param list the list of strings you wish to remove
-	 * @param fileName
+	 * Prints the given array list to a given file. Any contents previously in the
+	 * file will be removed.
+	 * 
+	 * @param list     the list of strings you wish to remove
+	 * @param fileName The name of the file you wish to output to.
 	 */
 	private void outputFile(ArrayList<String> list, String fileName) {
 
@@ -84,6 +85,7 @@ public class InfixToPostFix {
 	}
 
 	/**
+	 * Calls convert() to convert each each element of the list to postfix.
 	 * 
 	 * @param ifList list of infix expressions to be converted to postfix
 	 * @return list of strings representing postfix expressions or error messages
@@ -91,12 +93,7 @@ public class InfixToPostFix {
 	private ArrayList<String> convertInfixToPostfix(ArrayList<String> ifList) {
 		ArrayList<String> pfList = new ArrayList<>();
 		for (String s : ifList) {
-			try {
-				convert(s);
-			} catch (Exception e) {
-
-				e.printStackTrace();
-			}
+			pfList.add(convert(s));
 		}
 
 		return pfList;
@@ -104,65 +101,100 @@ public class InfixToPostFix {
 
 	/**
 	 * Converts an infix expression into a postfix expression.
-	 * @param infix a string representing one infix notation 
+	 * 
+	 * @param infix a string representing one infix notation
 	 * @return the correct postfix expression from the given infix expression
-	 * @throws Exception Throws exception to stop program execution. Could also just return a string there but TBD on what is better.
+	 * @throws Exception Throws exception to stop program execution. Could also just
+	 *                   return a string there but TBD on what is better.
 	 */
-	private String convert(String infix) throws Exception { 
+	private String convert(String infix) {
 		int curRank = 0;
 		Scanner scan = new Scanner(infix);
 		String postFix = "";
 		Stack<String> stack = new Stack<>();
-		while(scan.hasNext()) {//for each term
-			
-				String s = scan.next();
-				
-				curRank += rank(s);//as soon as I see the char I want to make sure the rank is ok.
-				if(curRank > 1 ) {
-					scan.close();
-					throw new Exception("Too Many Operands" + " (" + s + ")");
-				} else if(curRank<-1) {
-					scan.close();
-					throw new Exception ("Too Many Operators" + " (" + s + ")");	
-				}
-				
-				//TODO Here is the real logic.
-				if(rank(s)==1) {//Means it is a number.
-					postFix += s;
-					postFix += " ";
-				} else {//s is an operator
-					int stackOpPrec = 0;
-					if(!stack.isEmpty()) {
-						stackOpPrec = precedenceInStack(stack.peek());
-					}
-					int curOpPrec = precedenceAsInput(s);
-					
-					//Check if it is a parentheses
-					if(s.equals(")")) {
-						while(stack.peek() != "(") {
-							postFix += stack.pop();
-						}
-					}
-					if(stackOpPrec>=curOpPrec) {
-						while(!stack.isEmpty()&&stackOpPrec>=curOpPrec) {
-							String topOfStack = stack.pop();
-							
-								postFix+= topOfStack;
-								postFix+=" ";		
-						}
+		while (scan.hasNext()) {// for each term
+
+			String s = scan.next();
+
+			curRank += rank(s);// as soon as I see the char I want to make sure the rank is ok.
+			if (curRank > 1) {
+				scan.close();
+				return ("Error: too many operands" + " (" + s + ")");
+			} else if (curRank < 0) {
+				scan.close();
+				return ("Error: too many operators" + " (" + s + ")");
+			}
+
+			// TODO Here is the real logic.
+			if (rank(s) == 1) {// Means it is a number.
+				postFix += s;
+				postFix += " ";
+			} else {// s is an operator
+
+				if (stack.isEmpty()) {// don't compare just push it
+					if (s.equals(")")) {
+						// You shouldn't have it want to put close paren into empty stack.
+						scan.close();
+						return ("Error: no opening parenthesis detected");
 					} else {
 						stack.push(s);
 					}
-					
+				} else if (!stack.isEmpty()) {
+					int precOfS = precedenceAsInput(s);
+					if (precOfS > precedenceInStack(stack.peek())) {
+						if (s.equals(")")) {
+							scan.close();
+							return ("Error: no opening parenthesis detected");
+						}
+						stack.push(s);
+					} else {
+						while (!stack.isEmpty()) {
+							if (stack.peek().equals("(")) {// close parentheses won't ever be pushed
+								stack.pop(); // Postfix shouldn't have parentheses
+								break;
+							}
+
+							else if (precedenceInStack(stack.peek()) >= precOfS) {// pop anything with higher precedence
+								postFix += stack.pop();
+								postFix += " ";
+
+							}
+							if (s.equals(")") && stack.isEmpty()) {
+								scan.close();
+								return ("Error: no opening parenthesis detected");
+							}
+						}
+
+						if (!s.equals(")")) {
+							stack.push(s);
+						}
+					}
+
 				}
 			}
-
-	scan.close();
-	postFix.trim();
-	return postFix;
-
+		}
+		scan.close();// everything is scanned in.
+		// All that is left to do is to pop everything out.
+		//
+		while (!stack.isEmpty()) {
+			if (stack.peek().equals("(")) {
+				scan.close();
+				return ("Error: no closing parenthesis detected");
+			} else {
+				postFix += stack.pop();
+				postFix += " ";
+			}
+		}
+		postFix = postFix.trim();
+		return postFix;
 	}
 
+	/**
+	 * Returns the rank of the given String input.
+	 * 
+	 * @param s String token you wish to know the rank of
+	 * @return rank of the given String
+	 */
 	private int rank(String s) {
 		int rank;
 		switch (s) {
@@ -191,6 +223,9 @@ public class InfixToPostFix {
 		case ")":
 			rank = 0;
 			break;
+		case "–":
+			rank = -1;
+			break;
 
 		default:
 			rank = 1;// this is anything that is not an op is treated as a num/let
@@ -198,6 +233,13 @@ public class InfixToPostFix {
 		return rank;
 	}
 
+	/**
+	 * Returns the precedence of the given string as a scanned input. If the input
+	 * isn't a valid operator it throws an IllegalArgument Exception.
+	 * 
+	 * @param s A string representing an operator as an input.
+	 * @return The precendence of the given operator as an input
+	 */
 	private int precedenceAsInput(String s) {
 		int prec;
 		switch (s) {
@@ -208,6 +250,9 @@ public class InfixToPostFix {
 			prec = 1;
 			break;
 
+		case "–":// Why are there two minus signs
+			prec = 1;
+			break;
 		case "*":
 			prec = 2;
 			break;
@@ -235,6 +280,13 @@ public class InfixToPostFix {
 		return prec;
 	}
 
+	/**
+	 * Returns the precedence of the given string as the top element of the stack.
+	 * If the input isn't a valid operator it throws an IllegalArgument Exception.
+	 * 
+	 * @param s A string representing an operator from the stack
+	 * @return The precedence of the given operator as one from the stack
+	 */
 	private int precedenceInStack(String s) {
 		int prec;
 		switch (s) {
@@ -242,6 +294,10 @@ public class InfixToPostFix {
 			prec = 1;
 			break;
 		case "-":
+			prec = 1;
+			break;
+
+		case "–":// Again there are two minus signs
 			prec = 1;
 			break;
 
