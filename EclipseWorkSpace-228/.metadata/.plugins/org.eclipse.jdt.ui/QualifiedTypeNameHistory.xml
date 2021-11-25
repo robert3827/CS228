@@ -36,8 +36,11 @@
     <fullyQualifiedTypeName name="java.util.Random"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="edu.iastate.cs228.hw2.PointScanner"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="java.util.Stack"/>
+    <fullyQualifiedTypeName name="com.sun.org.apache.bcel.internal.generic.PUSH"/>
+    <fullyQualifiedTypeName name="com.sun.source.tree.ParenthesizedTree"/>
+    <fullyQualifiedTypeName name="edu.iastate.cs228.hw4.MsgTree"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
 </qualifiedTypeNameHistroy>
