@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class RunMe {
+	
+	
 	public static void main(String[] args) {
 		String fileName;
 		Scanner scan = new Scanner(System.in);
@@ -18,7 +20,8 @@ public class RunMe {
 		rf.getDataFromFile(fileName, lines);
 		rf.printArray(lines);
 		if(lines.size() ==2) {
-			CreateTree tree = new CreateTree(lines.get(0));
+			MsgTree tree = new MsgTree(lines.get(0));
+			
 		} else if (lines.size() == 3) {
 			CreateTree tree = new CreateTree(lines.get(0), lines.get(1));
 		}

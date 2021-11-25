@@ -1,6 +1,5 @@
 package edu.iastate.cs228.hw4;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Stack;
 
@@ -24,11 +23,7 @@ public class CreateTree {
 
 	
 	public CreateTree(String scheme1) {
-		root = new MsgTree();
-		this.scheme1 = scheme1;
-		nodes = new ArrayList<MsgTree>();
-		nodeList(scheme1);
-		createTree(nodes);
+		
 		} 
 	public CreateTree(String scheme1, String scheme2) {
 			root = new MsgTree();
@@ -40,12 +35,7 @@ public class CreateTree {
 	 * @param nodesList an array list to house the nodes parsed from the string.
 	 * @param s the string you wish to turn into a list of nodes.
 	 */
-	public void nodeList(String s) {
-		for(int i=s.length()-1;i>=0;i--) {
-			MsgTree node = new MsgTree(s.charAt(i));
-			nodes.add(node);
-		}
-	}
+	
 	public void createTree(ArrayList<MsgTree> nodesList) {
 		Stack<MsgTree> letterStack = new Stack<>();
 		Stack<MsgTree> treeStack = new Stack<>();
@@ -75,6 +65,7 @@ public class CreateTree {
 			
 			
 		}
+		root = treeStack.pop();
 		
 		
 	}
