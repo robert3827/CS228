@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * Represents the Message Tree Nodes.
+ * Represents the Message Tree Nodes and their children (if they have any).
  * @author Robert Holeman
  *
  */
@@ -25,9 +25,6 @@ public class MsgTree {
 	
 	public MsgTree root;
 	
-	public MsgTree() {
-		
-	}
 	public MsgTree( char payload) {
 		this.payloadChar = payload;
 	}
@@ -35,9 +32,23 @@ public class MsgTree {
 		
 		ArrayList<MsgTree> nodes = new ArrayList<MsgTree>();
 		nodeList(nodes, encodingString);
-		createTree(nodes);
+		root = createTree(nodes);
 	}
 	public static void printCodes(MsgTree root, String code) {
+		System.out.println("character code");
+		System.out.println("--------------");
+		if(root.left != null) {
+			code+='0';
+			printCodes(root.left, code);
+		} else {//left is null
+			System.out.println(root.payloadChar + code);
+		}
+		if(root.right !=null) {
+			code+='1';
+			printCodes(root.right, code);
+		} else {//right is null
+			System.out.println(code);
+		}
 		
 	}
 	
@@ -50,7 +61,7 @@ public class MsgTree {
 		}
 	}
 	
-	public void createTree(ArrayList<MsgTree> nodesList) {
+	public MsgTree createTree(ArrayList<MsgTree> nodesList) {
 		Stack<MsgTree> letterStack = new Stack<>();
 		Stack<MsgTree> treeStack = new Stack<>();
 		for(int i=0;i<nodesList.size();i++) {
@@ -79,8 +90,8 @@ public class MsgTree {
 			
 			
 		}
-		root = treeStack.pop();
-		
+//		root = treeStack.pop();
+		return treeStack.pop();
 		
 	}
 	

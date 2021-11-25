@@ -3,6 +3,11 @@ package edu.iastate.cs228.hw4;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Run this method to input a file name, and recieve the results.
+ * @author Robert Holeman
+ *
+ */
 public class RunMe {
 	
 	
