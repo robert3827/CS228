@@ -23,20 +23,35 @@ public class MsgTree {
 	public MsgTree right;
 	
 	
-	public MsgTree root;
+//	public MsgTree root;//MsgTree Object now represents the binary tree when constructed to be so.
 	
 	public MsgTree( char payload) {
 		this.payloadChar = payload;
+		//Same as default behavior but just FYI
+		this.left = null;
+		this.right = null;
 	}
+	/**
+	 * Constructs a Tree from the given string. The Object 
+	 * @param encodingString the format of the tree that should be constructed.
+	 */
 	public MsgTree(String encodingString) {//create tree
 		
 		ArrayList<MsgTree> nodes = new ArrayList<MsgTree>();
 		nodeList(nodes, encodingString);
-		root = createTree(nodes);
+//		root = createTree(nodes);
+		MsgTree root = createTree(nodes);
+		this.payloadChar = root.payloadChar;
+		this.left = root.left;
+		this.right = root.right;
 	}
+	/**
+	 * Prints the amount of times you go left or right, as 0 or 1 respectively, to get to every letter in the tree.
+	 * @param root - root node of the tree
+	 * @param code
+	 */
 	public static void printCodes(MsgTree root, String code) {
-		System.out.println("character code");
-		System.out.println("--------------");
+		
 		if(root.left != null) {
 			code+='0';
 			printCodes(root.left, code);
@@ -60,7 +75,11 @@ public class MsgTree {
 			nodes.add(node);
 		}
 	}
-	
+	/**
+	 * Creates the binary tree from the bottom up and returns the root node with all of the children connected below it.
+	 * @param nodesList
+	 * @return
+	 */
 	public MsgTree createTree(ArrayList<MsgTree> nodesList) {
 		Stack<MsgTree> letterStack = new Stack<>();
 		Stack<MsgTree> treeStack = new Stack<>();
@@ -94,6 +113,24 @@ public class MsgTree {
 		return treeStack.pop();
 		
 	}
+	public String decode(MsgTree tree, String msg) {
+		String ans = "";
+		int i=0;
+		while(tree.payloadChar == '^') {
+			if(msg.charAt(i) == 0) {
+				//TODO
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+		return ans;
+	}
+	
 	
 	
 	

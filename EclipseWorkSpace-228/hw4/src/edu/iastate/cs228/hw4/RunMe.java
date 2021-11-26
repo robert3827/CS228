@@ -26,9 +26,11 @@ public class RunMe {
 		rf.printArray(lines);
 		if(lines.size() ==2) {
 			MsgTree tree = new MsgTree(lines.get(0));
-			
+			System.out.println("character code");
+			System.out.println("--------------");
+			MsgTree.printCodes(tree, "");
 		} else if (lines.size() == 3) {
-			CreateTree tree = new CreateTree(lines.get(0), lines.get(1));
+			
 		}
 		
 		
