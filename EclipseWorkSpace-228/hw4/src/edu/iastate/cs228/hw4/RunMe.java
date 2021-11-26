@@ -19,18 +19,26 @@ public class RunMe {
 		
 //		System.out.println("Enter the name of the file.");
 //		fileName = scan.next();
-		fileName = "cadbard.arch";//TODO Change this
+		fileName = "monalisa.arch";//TODO Change this
 		scan.close();
 		ArrayList<String> lines = new ArrayList<String>();
 		rf.getDataFromFile(fileName, lines);
 		rf.printArray(lines);
 		if(lines.size() ==2) {
+			
 			MsgTree tree = new MsgTree(lines.get(0));
 			System.out.println("character code");
 			System.out.println("--------------");
 			MsgTree.printCodes(tree, "");
-		} else if (lines.size() == 3) {
+//			System.out.println(tree.decode(tree, lines.get(1)));
 			
+		} else if (lines.size() == 3) {
+			char c = '\n';
+			MsgTree tree = new MsgTree(lines.get(0) + c + lines.get(1));
+			System.out.println("character code");
+			System.out.println("--------------");
+			MsgTree.printCodes(tree, "");
+//			System.out.println(tree.decode(tree, lines.get(2)));
 		}
 		
 		

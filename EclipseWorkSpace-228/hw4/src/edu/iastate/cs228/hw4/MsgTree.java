@@ -83,7 +83,7 @@ public class MsgTree {
 		Stack<MsgTree> letterStack = new Stack<>();
 		Stack<MsgTree> treeStack = new Stack<>();
 		for(int i=0;i<nodesList.size();i++) {
-			System.out.println(nodesList.get(i).payloadChar);
+//			System.out.println(nodesList.get(i).payloadChar);
 			if(nodesList.get(i).payloadChar != '^') {
 				letterStack.push(nodesList.get(i));
 			} else if(nodesList.get(i).payloadChar == '^') {
@@ -113,19 +113,24 @@ public class MsgTree {
 		
 	}
 	public String decode(MsgTree tree, String msg) {
+		MsgTree root = tree;
+		MsgTree current = root;
 		String ans = "";
-		int i=0;
-		while(tree.payloadChar == '^') {
-			if(msg.charAt(i) == 0) {
-				//TODO
+		for(int i=0;i<msg.length();i++) {
+			char currentNodePayload = current.payloadChar;
+			char direction = msg.charAt(i);
+			if(currentNodePayload != '^') {//add char to answer and reset search
+				ans+= currentNodePayload;
+				current = root;
+				i--;
+			} else if(direction == '0') {//internal node keep going left
+				current = current.left;
+			} else if(direction=='1') {
+				current = current.right;//internal node keep going right
 			}
+		
 		}
-		
-		
-		
-		
-		
-		
+		ans+=current.payloadChar;
 		
 		return ans;
 	}
