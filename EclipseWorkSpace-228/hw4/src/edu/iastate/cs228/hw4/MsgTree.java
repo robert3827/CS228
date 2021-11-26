@@ -51,22 +51,21 @@ public class MsgTree {
 	 * @param code
 	 */
 	public static void printCodes(MsgTree root, String code) {
-		
-		if(root.left != null) {
-			code+='0';
-			printCodes(root.left, code);
-		} else {//left is null
-			System.out.println(root.payloadChar + code);
-		}
-		if(root.right !=null) {
-			code+='1';
-			printCodes(root.right, code);
-		} else {//right is null
-			System.out.println(code);
+		if(root.payloadChar != '^') {
+			outputCode(root.payloadChar, code);
+		} else {
+			if (root.left != null) {
+				printCodes(root.left, code + "0");
+			}
+			if (root.right != null) {
+				printCodes(root.right, code + "1");
+			}
 		}
 		
 	}
-	
+	private static void outputCode(char c, String code) {
+		System.out.println(c + "    " + code);
+	}
 	
 	
 	public void nodeList(ArrayList<MsgTree> nodes, String s) {
