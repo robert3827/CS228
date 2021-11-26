@@ -19,7 +19,7 @@ public class RunMe {
 		
 //		System.out.println("Enter the name of the file.");
 //		fileName = scan.next();
-		fileName = "monalisa.arch";//TODO Change this
+		fileName = "constitution.arch";//TODO Change this
 		scan.close();
 		ArrayList<String> lines = new ArrayList<String>();
 		rf.getDataFromFile(fileName, lines);
