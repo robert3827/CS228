@@ -46,9 +46,9 @@ public class MsgTree {
 		this.right = root.right;
 	}
 	/**
-	 * Prints the amount of times you go left or right, as 0 or 1 respectively, to get to every letter in the tree.
-	 * @param root - root node of the tree
-	 * @param code
+	 * Prints the amount of times you go left or right, as 0 or 1 respectively, to get to each letter in the tree.
+	 * @param root the root node of the tree
+	 * @param code - the path to get to the given payload char
 	 */
 	public static void printCodes(MsgTree root, String code) {
 		if(root.payloadChar != '^') {
@@ -63,6 +63,7 @@ public class MsgTree {
 		}
 		
 	}
+	
 	private static void outputCode(char c, String code) {
 		System.out.println(c + "    " + code);
 	}
@@ -76,31 +77,21 @@ public class MsgTree {
 	}
 	/**
 	 * Creates the binary tree from the bottom up and returns the root node with all of the children connected below it.
-	 * @param nodesList
-	 * @return
+	 * @param nodesList reversed order list of nodes to be created from a tree
+	 * @return the root node of the created tree
 	 */
 	public MsgTree createTree(ArrayList<MsgTree> nodesList) {
-		Stack<MsgTree> letterStack = new Stack<>();
 		Stack<MsgTree> treeStack = new Stack<>();
 		for(int i=0;i<nodesList.size();i++) {
-//			System.out.println(nodesList.get(i).payloadChar);
+			System.out.println(nodesList.get(i).payloadChar);
+			char c = nodesList.get(i).payloadChar;
 			if(nodesList.get(i).payloadChar != '^') {
-				letterStack.push(nodesList.get(i));
+				treeStack.push(nodesList.get(i));
 			} else if(nodesList.get(i).payloadChar == '^') {
 				MsgTree parent = nodesList.get(i);
-				if(!letterStack.isEmpty()) {//Grab 2 elements
-					parent.left = letterStack.pop();
-					if(!letterStack.isEmpty()) {
-						parent.right = letterStack.pop();
-					} else if(!treeStack.isEmpty()) {
-						parent.right = treeStack.pop();
-					}
-				} else if(!treeStack.isEmpty()){//no letters before 
-					parent.left = treeStack.pop();
-					if(!treeStack.isEmpty()) {
-						parent.right = treeStack.pop();
-					}
-				}
+				//now we need something for left
+				parent.left = treeStack.pop();
+				parent.right = treeStack.pop();
 				
 				
 				treeStack.push(parent);

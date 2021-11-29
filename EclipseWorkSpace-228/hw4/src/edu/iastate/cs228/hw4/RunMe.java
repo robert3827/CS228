@@ -19,7 +19,7 @@ public class RunMe {
 		
 //		System.out.println("Enter the name of the file.");
 //		fileName = scan.next();
-		fileName = "constitution.arch";//TODO Change this
+		fileName = "monalisa.arch";//TODO Change this
 		scan.close();
 		ArrayList<String> lines = new ArrayList<String>();
 		rf.getDataFromFile(fileName, lines);
@@ -38,10 +38,13 @@ public class RunMe {
 			System.out.println("character code");
 			System.out.println("--------------");
 			MsgTree.printCodes(tree, "");
-//			System.out.println(tree.decode(tree, lines.get(2)));
+			System.out.println(tree.decode(tree, lines.get(2)));
 		}
 		
 		
 
 	}
+	
+	
+	
 }
