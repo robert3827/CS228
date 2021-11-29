@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 /**
- * Represents the Message Tree Nodes and their children (if they have any).
+ * Represents the Message Tree Nodes and their children (if they have any). 
  * @author Robert Holeman
  *
  */
@@ -24,15 +24,20 @@ public class MsgTree {
 	
 	
 //	public MsgTree root;//MsgTree Object now represents the binary tree when constructed to be so.
-	
-	public MsgTree( char payload) {
+	/**
+	 * Constructor for a single node with no children.
+	 * @param payload the character to be represented by the node.
+	 */
+	public MsgTree(char payload) {
 		this.payloadChar = payload;
 		//Same as default behavior but just FYI
 		this.left = null;
 		this.right = null;
 	}
 	/**
-	 * Constructs a Tree from the given string. The Object 
+	 * Constructs a Tree from the given string. '^' are treated as internal nodes 
+	 * which will have left and right children. Other characters will be treated as 
+	 * leaf nodes which will have no children.
 	 * @param encodingString the format of the tree that should be constructed.
 	 */
 	public MsgTree(String encodingString) {//create tree
@@ -48,7 +53,7 @@ public class MsgTree {
 	/**
 	 * Prints the amount of times you go left or right, as 0 or 1 respectively, to get to each letter in the tree.
 	 * @param root the root node of the tree
-	 * @param code - the path to get to the given payload char
+	 * @param code the path to get to the associated payload char
 	 */
 	public static void printCodes(MsgTree root, String code) {
 		if(root.payloadChar != '^') {
@@ -63,27 +68,40 @@ public class MsgTree {
 		}
 		
 	}
-	
+	/**
+	 * Helper method to print out table for print codes.
+	 * @param c character to be printed
+	 * @param code the code associated with c
+	 */
 	private static void outputCode(char c, String code) {
-		System.out.println(c + "    " + code);
+		char newLine = '\n';
+		if(c == newLine) {
+			System.out.println("\\n   " + code);//TODO is this what they want us to do?
+		} else {
+			System.out.println(c + "    " + code);
+		}
 	}
 	
-	
-	public void nodeList(ArrayList<MsgTree> nodes, String s) {
+	/**
+	 * Helper method that creates a reverse order list of nodes.
+	 * @param nodes the list that will house the nodes in reverse order at the end of this method
+	 * @param s the string from which to create the list nodes
+	 */
+	private void nodeList(ArrayList<MsgTree> nodes, String s) {
 		for(int i=s.length()-1;i>=0;i--) {
 			MsgTree node = new MsgTree(s.charAt(i));
 			nodes.add(node);
 		}
 	}
 	/**
-	 * Creates the binary tree from the bottom up and returns the root node with all of the children connected below it.
+	 * Iteratively creates the binary tree from the bottom up and returns the root node with all of the children connected below it.
 	 * @param nodesList reversed order list of nodes to be created from a tree
 	 * @return the root node of the created tree
 	 */
-	public MsgTree createTree(ArrayList<MsgTree> nodesList) {
+	private MsgTree createTree(ArrayList<MsgTree> nodesList) {
 		Stack<MsgTree> treeStack = new Stack<>();
 		for(int i=0;i<nodesList.size();i++) {
-			System.out.println(nodesList.get(i).payloadChar);
+//			System.out.println(nodesList.get(i).payloadChar);
 			char c = nodesList.get(i).payloadChar;
 			if(nodesList.get(i).payloadChar != '^') {
 				treeStack.push(nodesList.get(i));
@@ -103,6 +121,12 @@ public class MsgTree {
 		return treeStack.pop();
 		
 	}
+	/**
+	 * Traverses the tree created in the constructor.
+	 * @param tree the root node of the tree you wish to traverse.
+	 * @param msg 0's and 1's that determine whether to go right or left.
+	 * @return ans the message determined by the tree and string given as parameters
+	 */
 	public String decode(MsgTree tree, String msg) {
 		MsgTree root = tree;
 		MsgTree current = root;
